@@ -1,0 +1,54 @@
+name: External bug report
+description: Report a production or staging issue observed from outside the internal team.
+title: "[bug] "
+labels:
+  - external-bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for externally observed bugs only. Internal planning, feature work, and roadmap decomposition stay in Paperclip.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: Briefly describe the problem.
+      placeholder: Attendance approval page shows a blank table for approved shifts
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, deployment target, and operator role if relevant.
+      placeholder: Chrome 135 on production as finance admin
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: List the exact steps to reproduce the issue.
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Screenshots, logs, or linked recordings.

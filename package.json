@@ -1,0 +1,32 @@
+{
+  "name": "staffing-ops",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.30.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -b",
+    "build": "tsc -b",
+    "test:unit": "vitest run packages/domain/test",
+    "test:integration": "vitest run tests/integration",
+    "test": "pnpm test:unit && pnpm test:integration",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "paperclip:branch": "node scripts/create-paperclip-branch.mjs",
+    "validate:branch": "node scripts/validate-branch-name.mjs",
+    "validate:pr": "node scripts/validate-pr-metadata.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "@types/node": "^22.14.1",
+    "eslint": "^9.24.0",
+    "globals": "^16.0.0",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.29.1",
+    "vitest": "^3.0.9"
+  }
+}

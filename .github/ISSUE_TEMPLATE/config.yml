@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Internal delivery work
+    url: https://paperclip.bigbears.me/CMPAAAAAAAA/issues
+    about: Internal planning and implementation stay in Paperclip. Use GitHub issues only for external bug intake.
