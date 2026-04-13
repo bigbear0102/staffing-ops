@@ -1,54 +1,54 @@
-name: External bug report
-description: Report a production or staging issue observed from outside the internal team.
-title: "[bug] "
+name: 외부 버그 제보
+description: 내부 팀 밖에서 관찰된 production 또는 staging 이슈를 제보합니다.
+title: "[버그] "
 labels:
   - external-bug
 body:
   - type: markdown
     attributes:
       value: |
-        Use this form for externally observed bugs only. Internal planning, feature work, and roadmap decomposition stay in Paperclip.
+        이 양식은 외부에서 관찰된 버그 제보에만 사용합니다. 내부 기획, 기능 작업, 로드맵 분해는 Paperclip에서 계속 관리합니다.
   - type: input
     id: summary
     attributes:
-      label: Summary
-      description: Briefly describe the problem.
-      placeholder: Attendance approval page shows a blank table for approved shifts
+      label: 요약
+      description: 문제가 무엇인지 짧게 적어주세요.
+      placeholder: 근태 승인 페이지에서 승인된 시프트 표가 비어 보입니다
     validations:
       required: true
   - type: input
     id: environment
     attributes:
-      label: Environment
-      description: Browser, deployment target, and operator role if relevant.
-      placeholder: Chrome 135 on production as finance admin
+      label: 환경
+      description: 브라우저, 배포 환경, 필요하면 사용자 역할까지 적어주세요.
+      placeholder: production의 Chrome 135, finance admin 권한
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Steps to reproduce
-      description: List the exact steps to reproduce the issue.
+      label: 재현 단계
+      description: 문제를 재현하는 정확한 단계를 적어주세요.
       placeholder: |
-        1. Open ...
-        2. Click ...
-        3. Observe ...
+        1. ... 화면을 엽니다
+        2. ... 버튼을 누릅니다
+        3. ... 현상을 확인합니다
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: Expected behavior
+      label: 기대 동작
     validations:
       required: true
   - type: textarea
     id: actual
     attributes:
-      label: Actual behavior
+      label: 실제 동작
     validations:
       required: true
   - type: textarea
     id: evidence
     attributes:
-      label: Evidence
-      description: Screenshots, logs, or linked recordings.
+      label: 증거 자료
+      description: 스크린샷, 로그, 녹화 링크 등을 남겨주세요.

@@ -12,6 +12,8 @@
     }
   },
   "dependencies": {
-    "@staffing-ops/domain": "workspace:*"
+    "@staffing-ops/db": "workspace:*",
+    "@staffing-ops/domain": "workspace:*",
+    "@staffing-ops/jobs": "workspace:*"
   }
 }

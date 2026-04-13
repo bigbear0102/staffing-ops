@@ -1,4 +1,4 @@
-name: pull-request-governance
+name: PR 거버넌스
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate branch name
+      - name: 브랜치 이름 검증
         run: node scripts/validate-branch-name.mjs "${{ github.head_ref }}"
-      - name: Validate PR title and body
+      - name: PR 제목 및 본문 검증
         run: node scripts/validate-pr-metadata.mjs "${{ github.event.pull_request.title }}" "${{ github.event.pull_request.body }}"

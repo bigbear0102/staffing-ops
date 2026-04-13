@@ -5,6 +5,12 @@
       "path": "./packages/domain"
     },
     {
+      "path": "./packages/db"
+    },
+    {
+      "path": "./packages/jobs"
+    },
+    {
       "path": "./apps/api"
     },
     {

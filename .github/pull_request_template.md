@@ -1,16 +1,16 @@
-## Linked Paperclip Issue
+## 연결된 Paperclip 이슈
 
 - [CMPAAAAAAAA-000](/CMPAAAAAAAA/issues/CMPAAAAAAAA-000)
 
-## Summary
+## 변경 요약
 
-- Describe the change.
+- 변경 내용을 간단히 적어주세요.
 
-## Risk Notes
+## 리스크 메모
 
-- Note user-facing, workflow, data, or operational risk.
+- 사용자 영향, workflow 변화, 데이터 영향, 운영 리스크를 적어주세요.
 
-## Verification Notes
+## 검증 메모
 
 - `pnpm lint`
 - `pnpm typecheck`

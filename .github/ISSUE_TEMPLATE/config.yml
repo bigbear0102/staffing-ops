@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Internal delivery work
+  - name: 내부 전달 작업
     url: https://paperclip.bigbears.me/CMPAAAAAAAA/issues
-    about: Internal planning and implementation stay in Paperclip. Use GitHub issues only for external bug intake.
+    about: 내부 기획, 구현, 로드맵 분해는 Paperclip에서 관리합니다. GitHub 이슈는 외부 버그 접수에만 사용합니다.

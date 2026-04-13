@@ -12,7 +12,8 @@
 - In phase 1, do not run a parallel planning process in GitHub Issues. Internal delivery should stay in Paperclip until the team size and external contribution model justify a second tracker.
 
 ## Repository Strategy
-- Start with one private GitHub repository for the first product wedge.
+- Start with one GitHub repository for the first product wedge.
+- If the company keeps a zero-cash GitHub policy, default to a public repository and keep secrets, raw pilot data, and internal-only evidence outside Git.
 - Keep the codebase as a TypeScript modular monolith aligned with the architecture direction in `docs/staffing-ops-architecture.md`.
 - Prefer a single repository structure that can hold:
 - admin web application
@@ -130,7 +131,7 @@
 - Use QA Reviewer as a merge gate for workflow-critical changes, not as a parallel implementation owner.
 
 ## CEO-Level Decisions Needed
-- Confirm the GitHub organization or owner account for the first private repository.
+- Confirm whether the company will keep zero-cash GitHub operations. If yes, approve a public repository posture and keep sensitive material out of Git.
 - Confirm whether branch protection should block direct pushes to `main` from day one.
 - Confirm whether OpenClaw should remain optional capacity only, rather than a required execution surface, for the first build phase.
 
