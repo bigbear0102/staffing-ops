@@ -14,6 +14,7 @@ import {
 } from "@staffing-ops/domain";
 import {
   createBillingHandoffBatchRecord,
+  type OperatorUserRecord,
   PersistenceConflictError,
   PersistenceNotFoundError,
   type StaffingPersistence
@@ -203,10 +204,14 @@ function toInvoiceDraftRequest(request: BillingHandoffRequest): InvoiceDraftRequ
 function requireOperatorUser(
   repository: StaffingPersistence,
   operatorUserId: string
-): void {
-  if (!repository.getOperatorUser(operatorUserId)) {
+): OperatorUserRecord {
+  const operatorUser = repository.getOperatorUser(operatorUserId);
+
+  if (!operatorUser) {
     throw new PersistenceNotFoundError(`Operator user ${operatorUserId} does not exist.`);
   }
+
+  return operatorUser;
 }
 
 export function handleOrderIntake(
@@ -260,7 +265,7 @@ export function handlePlacementCommit(
   request: PlacementCommitJsonRequest
 ): JsonApiResponse<PlacementCommitJsonResponse> {
   try {
-    requireOperatorUser(repository, request.actorUserId);
+    const operatorUser = requireOperatorUser(repository, request.actorUserId);
 
     const order = repository.getOrder(request.orderId);
 
@@ -279,7 +284,7 @@ export function handlePlacementCommit(
       order,
       worker,
       actorUserId: request.actorUserId,
-      actorRole: request.actorRole,
+      actorRole: operatorUser.role,
       auditEventId: request.auditEventId,
       committedAt: request.committedAt,
       sourceChannel: request.sourceChannel,
@@ -397,6 +402,18 @@ export function handleBillingHandoffRequest(
 ): JsonApiResponse<BillingHandoffRequestJsonResponse> {
   try {
     requireOperatorUser(repository, request.generatedByUserId);
+
+    const uniqueRequestIds = new Set<string>();
+
+    for (const line of request.lines) {
+      if (uniqueRequestIds.has(line.requestId)) {
+        throw new Error(
+          `Billing handoff request ${line.requestId} appears multiple times in the export payload.`
+        );
+      }
+
+      uniqueRequestIds.add(line.requestId);
+    }
 
     const lines = request.lines.map((line): BillingHandoffExportLineInput => {
       const billingHandoffRequest = repository.getBillingHandoffRequest(line.requestId);

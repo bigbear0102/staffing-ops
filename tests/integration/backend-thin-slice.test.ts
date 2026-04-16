@@ -354,6 +354,64 @@ describe("backend thin slice persistence", () => {
     );
   });
 
+  it("uses the persisted operator role instead of trusting the request role for overrides", () => {
+    const repository = createSeededRepository();
+
+    handleOrderIntake(repository, {
+      orderId: "order-1",
+      actorUserId: "ops-manager-1",
+      createdAt: "2026-04-07T08:10:00+09:00",
+      publish: {
+        auditEventId: "audit-order-publish-1",
+        publishedAt: "2026-04-07T08:11:00+09:00"
+      },
+      payload: {
+        organizationId: "org-1",
+        clientAccountId: "client-1",
+        siteId: "site-1",
+        roleCode: "picker",
+        headcountRequired: 1,
+        requiredQualifications: ["forklift"],
+        startDate: "2026-04-08",
+        endDate: "2026-04-30",
+        shiftPattern: "weekday-day",
+        billRateKrw: 19000,
+        overtimeRuleCode: "std-kr"
+      }
+    });
+
+    const placementResponse = handlePlacementCommit(repository, {
+      assignmentId: "assignment-spoofed-role-1",
+      orderId: "order-1",
+      workerId: "worker-blocked-1",
+      actorUserId: "ops-operator-1",
+      actorRole: "operations_manager",
+      auditEventId: "audit-assignment-commit-1",
+      authorizationAuditEventId: "audit-assignment-auth-1",
+      committedAt: "2026-04-07T08:20:00+09:00",
+      sourceChannel: "operator_console",
+      payRateKrw: 13000,
+      serviceType: "dispatch",
+      effectiveDate: "2026-04-08",
+      overrideReason: "Spoofed role should not bypass the override boundary."
+    });
+
+    expect(placementResponse.status).toBe(403);
+    expect(placementResponse.body).toMatchObject({
+      error: {
+        code: "role_boundary_denied"
+      }
+    });
+    expect(repository.snapshot().assignments).toHaveLength(0);
+    expect(repository.listAuditEvents().at(-1)).toMatchObject({
+      action: "placement.override_denied",
+      actorUserId: "ops-operator-1",
+      payload: {
+        actorRole: "operations_operator"
+      }
+    });
+  });
+
   it("blocks billing handoff export when the underlying attendance row is not approved", () => {
     const repository = createSeededRepository();
 
@@ -452,5 +510,109 @@ describe("backend thin slice persistence", () => {
       }
     });
     expect(repository.snapshot().billingHandoffBatches).toHaveLength(0);
+  });
+
+  it("rejects duplicate billing handoff request ids before export generation", () => {
+    const repository = createSeededRepository();
+
+    repository.putOrder({
+      id: "order-1",
+      organizationId: "org-1",
+      clientAccountId: "client-1",
+      siteId: "site-1",
+      roleCode: "picker",
+      headcountRequired: 1,
+      requiredQualifications: ["forklift"],
+      slotsFilled: 1,
+      startDate: "2026-04-08",
+      endDate: "2026-04-30",
+      shiftPattern: "weekday-day",
+      billRateKrw: 19000,
+      overtimeRuleCode: "std-kr",
+      status: "filled",
+      createdAt: "2026-04-07T08:10:00+09:00",
+      updatedAt: "2026-04-07T08:20:00+09:00"
+    });
+    repository.putAssignment({
+      id: "assignment-1",
+      organizationId: "org-1",
+      clientAccountId: "client-1",
+      orderId: "order-1",
+      workerId: "worker-ready-1",
+      siteId: "site-1",
+      plannedStartDate: "2026-04-08",
+      plannedEndDate: "2026-04-30",
+      sourceChannel: "operator_console",
+      status: "confirmed",
+      snapshot: {
+        snapshotVersion: 1,
+        orderId: "order-1",
+        workerId: "worker-ready-1",
+        siteId: "site-1",
+        payRateKrw: 13000,
+        billRateKrw: 19000,
+        shiftPattern: "weekday-day",
+        effectiveDate: "2026-04-08",
+        serviceType: "dispatch"
+      },
+      createdAt: "2026-04-07T08:20:00+09:00",
+      updatedAt: "2026-04-07T08:20:00+09:00"
+    });
+    repository.putAttendance({
+      id: "attendance-1",
+      organizationId: "org-1",
+      assignmentId: "assignment-1",
+      workDate: "2026-04-08",
+      scheduledStartAt: "2026-04-08T09:00:00+09:00",
+      scheduledEndAt: "2026-04-08T18:00:00+09:00",
+      actualStartAt: "2026-04-08T09:00:00+09:00",
+      actualEndAt: "2026-04-08T18:00:00+09:00",
+      breakMinutes: 60,
+      overtimeMinutes: 0,
+      status: "approved",
+      source: "site_lead_mobile",
+      approvedAt: "2026-04-08T18:10:00+09:00",
+      approvedByUserId: "ops-manager-1",
+      createdAt: "2026-04-08T18:00:00+09:00",
+      updatedAt: "2026-04-08T18:10:00+09:00"
+    });
+    repository.putBillingHandoffRequest({
+      id: "handoff-request-1",
+      organizationId: "org-1",
+      clientAccountId: "client-1",
+      siteId: "site-1",
+      workerId: "worker-ready-1",
+      sourceAssignmentId: "assignment-1",
+      sourceAttendanceId: "attendance-1",
+      billingPeriodStart: "2026-04-01",
+      billingPeriodEnd: "2026-04-30",
+      billRateKrw: 19000,
+      status: "pending_export",
+      requestedAt: "2026-04-08T18:10:00+09:00",
+      createdAt: "2026-04-08T18:10:00+09:00",
+      updatedAt: "2026-04-08T18:10:00+09:00"
+    });
+
+    const exportResponse = handleBillingHandoffRequest(repository, {
+      exportBatchId: "batch-1",
+      generatedAt: "2026-04-09T09:00:00+09:00",
+      generatedByUserId: "finance-admin-1",
+      actorRole: "finance_admin",
+      auditEventId: "audit-billing-export-1",
+      authorizationAuditEventId: "audit-billing-export-auth-1",
+      outboxJobId: "job-billing-export-1",
+      lines: [{ requestId: "handoff-request-1" }, { requestId: "handoff-request-1" }]
+    });
+
+    expect(exportResponse.status).toBe(400);
+    expect(exportResponse.body).toMatchObject({
+      error: {
+        code: "invalid_request",
+        message:
+          "Billing handoff request handoff-request-1 appears multiple times in the export payload."
+      }
+    });
+    expect(repository.snapshot().billingHandoffBatches).toHaveLength(0);
+    expect(repository.listOutboxJobs()).toHaveLength(0);
   });
 });
