@@ -10,12 +10,6 @@
   "references": [
     {
       "path": "../../packages/domain"
-    },
-    {
-      "path": "../../packages/db"
-    },
-    {
-      "path": "../../packages/jobs"
     }
   ]
 }

@@ -38,11 +38,29 @@ importers:
 
   apps/api:
     dependencies:
+      '@staffing-ops/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@staffing-ops/domain':
         specifier: workspace:*
         version: link:../../packages/domain
+      '@staffing-ops/jobs':
+        specifier: workspace:*
+        version: link:../../packages/jobs
+
+  packages/db:
+    dependencies:
+      '@staffing-ops/domain':
+        specifier: workspace:*
+        version: link:../domain
 
   packages/domain: {}
+
+  packages/jobs:
+    dependencies:
+      '@staffing-ops/domain':
+        specifier: workspace:*
+        version: link:../domain
 
 packages:
 

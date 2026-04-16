@@ -1,5 +1,5 @@
 {
-  "name": "@staffing-ops/api",
+  "name": "@staffing-ops/jobs",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -12,8 +12,6 @@
     }
   },
   "dependencies": {
-    "@staffing-ops/db": "workspace:*",
-    "@staffing-ops/domain": "workspace:*",
-    "@staffing-ops/jobs": "workspace:*"
+    "@staffing-ops/domain": "workspace:*"
   }
 }
