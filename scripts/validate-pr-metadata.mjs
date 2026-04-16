@@ -1,9 +1,33 @@
-const title = process.argv[2] ?? process.env.PR_TITLE ?? "";
-const body = process.argv[3] ?? process.env.PR_BODY ?? "";
+const cliArgs = process.argv.slice(2).filter((argument) => argument !== "--");
+const title = cliArgs[0] ?? process.env.PR_TITLE ?? "";
+const body = (cliArgs[1] ?? process.env.PR_BODY ?? "").replace(/\r\n/g, "\n");
 
 const errors = [];
+const titleMatch = title.match(/^\[([A-Z0-9]+-\d+)\] .+/);
 
-if (!/^\[[A-Z0-9]+-\d+\] .+/.test(title)) {
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function findSection(bodyText, headings) {
+  const heading = headings.find((candidate) => bodyText.includes(candidate));
+  if (!heading) {
+    return null;
+  }
+
+  const sectionStart = bodyText.indexOf(heading) + heading.length;
+  const remainingBody = bodyText.slice(sectionStart);
+  const nextSectionIndex = remainingBody.search(/\n##\s+/u);
+  const sectionBody =
+    nextSectionIndex === -1 ? remainingBody.trim() : remainingBody.slice(0, nextSectionIndex).trim();
+
+  return {
+    heading,
+    body: sectionBody
+  };
+}
+
+if (!titleMatch) {
   errors.push('PR 제목은 "[ISSUE-ID] " 뒤에 요약이 오는 형식이어야 합니다.');
 }
 
@@ -15,15 +39,31 @@ const requiredSectionGroups = [
 ];
 
 for (const sectionGroup of requiredSectionGroups) {
-  if (!sectionGroup.some((section) => body.includes(section))) {
+  const section = findSection(body, sectionGroup);
+
+  if (!section) {
     errors.push(`PR 본문에 필수 섹션이 없습니다: "${sectionGroup[0]}".`);
+    continue;
+  }
+
+  if (!/^[-*]\s+\S+/mu.test(section.body)) {
+    errors.push(`PR 본문의 "${section.heading}" 섹션에는 최소 한 개의 bullet 항목이 있어야 합니다.`);
   }
 }
 
-if (!/\/[A-Z0-9]+\/issues\/[A-Z0-9]+-\d+/.test(body)) {
-  errors.push(
-    "PR 본문에는 /CMPAAAAAAAA/issues/CMPAAAAAAAA-32 와 같은 Paperclip 이슈 경로가 포함되어야 합니다."
+if (titleMatch) {
+  const issueIdentifier = titleMatch[1];
+  const companyPrefix = issueIdentifier.split("-")[0];
+  const linkedIssuePattern = new RegExp(
+    `\\[${escapeRegExp(issueIdentifier)}\\]\\(/${escapeRegExp(companyPrefix)}/issues/${escapeRegExp(issueIdentifier)}\\)`,
+    "u"
   );
+
+  if (!linkedIssuePattern.test(body)) {
+    errors.push(
+      `PR 본문에는 제목과 동일한 Paperclip 이슈 링크가 있어야 합니다: [${issueIdentifier}](/${companyPrefix}/issues/${issueIdentifier}).`
+    );
+  }
 }
 
 if (errors.length > 0) {

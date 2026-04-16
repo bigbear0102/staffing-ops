@@ -1,5 +1,7 @@
 import { spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { adminShellManifest } from "../../apps/admin/src/index.ts";
@@ -56,12 +58,15 @@ describe("workspace baseline", () => {
 
     expect(packageJson.scripts).toMatchObject({
       "demo:bundle": "pnpm build && node scripts/export-demo-bundle.mjs",
-      "public:preflight": "node scripts/public-repo-preflight.mjs"
+      "public:preflight": "node scripts/public-repo-preflight.mjs",
+      "paperclip:pr-body": "node scripts/create-paperclip-pr-body.mjs"
     });
     expect(readme).toContain("공개 저장소 가드레일");
     expect(readme).toContain("pnpm demo:bundle");
     expect(readme).toContain("pnpm public:preflight -- --require-public");
+    expect(readme).toContain("pnpm paperclip:pr-body -- CMPAAAAAAAA-32");
     expect(readme).toContain("artifacts/demo-bundle/README.md");
+    expect(prTemplate).toContain("paperclip:pr-body");
     expect(prTemplate).toContain("연결된 Paperclip 이슈");
     expect(prTemplate).toContain("변경 요약");
     expect(issueConfig).toContain("내부 전달 작업");
@@ -74,7 +79,9 @@ describe("workspace baseline", () => {
     expect(ciWorkflow).toContain("demo-bundle:");
     expect(ciWorkflow).toContain("pnpm demo:bundle");
     expect(ciWorkflow).toContain("actions/upload-artifact@v4");
+    expect(ciWorkflow).toContain("concurrency:");
     expect(governanceWorkflow).toContain("PR 거버넌스");
+    expect(governanceWorkflow).toContain("branches-ignore:");
     expect(governanceWorkflow).toContain("브랜치 이름 검증");
     expect(gitignore).toContain("artifacts/demo-bundle/");
     expect(
@@ -105,6 +112,7 @@ describe("workspace baseline", () => {
       process.execPath,
       [
         new URL("../../scripts/validate-pr-metadata.mjs", import.meta.url).pathname,
+        "--",
         "[CMPAAAAAAAA-15] GitHub 표면 한국어 정리",
         body
       ],
@@ -113,6 +121,113 @@ describe("workspace baseline", () => {
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("PR 메타데이터 확인 완료.");
+  });
+
+  it("rejects PR metadata when the linked Paperclip issue drifts from the title prefix", () => {
+    const body = [
+      "## 연결된 Paperclip 이슈",
+      "- [CMPAAAAAAAA-55](/CMPAAAAAAAA/issues/CMPAAAAAAAA-55)",
+      "",
+      "## 변경 요약",
+      "- 거버넌스 스크립트 강화",
+      "",
+      "## 리스크 메모",
+      "- local helper와 workflow를 함께 바꿉니다.",
+      "",
+      "## 검증 메모",
+      "- `pnpm test`"
+    ].join("\n");
+
+    const result = spawnSync(
+      process.execPath,
+      [
+        new URL("../../scripts/validate-pr-metadata.mjs", import.meta.url).pathname,
+        "[CMPAAAAAAAA-60] PR link drift 검증",
+        body
+      ],
+      { encoding: "utf8" }
+    );
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("제목과 동일한 Paperclip 이슈 링크");
+  });
+
+  it("generates a Paperclip-linked PR body skeleton from the helper script", () => {
+    const result = spawnSync(
+      process.execPath,
+      [
+        new URL("../../scripts/create-paperclip-pr-body.mjs", import.meta.url).pathname,
+        "--",
+        "CMPAAAAAAAA-60"
+      ],
+      { encoding: "utf8" }
+    );
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("## 연결된 Paperclip 이슈");
+    expect(result.stdout).toContain("[CMPAAAAAAAA-60](/CMPAAAAAAAA/issues/CMPAAAAAAAA-60)");
+    expect(result.stdout).toContain("## 검증 메모");
+  });
+
+  it("accepts the documented pnpm-style branch helper invocation", () => {
+    const tempDirectory = mkdtempSync(path.join(tmpdir(), "paperclip-branch-helper-"));
+
+    try {
+      const initResult = spawnSync("git", ["init", "--initial-branch=main"], {
+        cwd: tempDirectory,
+        encoding: "utf8"
+      });
+      expect(initResult.status).toBe(0);
+
+      const commitResult = spawnSync(
+        "git",
+        [
+          "-c",
+          "user.name=Paperclip Test",
+          "-c",
+          "user.email=paperclip@example.com",
+          "commit",
+          "--allow-empty",
+          "-m",
+          "init"
+        ],
+        {
+          cwd: tempDirectory,
+          encoding: "utf8"
+        }
+      );
+      expect(commitResult.status).toBe(0);
+
+      const branchResult = spawnSync(
+        process.execPath,
+        [
+          new URL("../../scripts/create-paperclip-branch.mjs", import.meta.url).pathname,
+          "--",
+          "CMPAAAAAAAA-60",
+          "paperclip github automation ci baseline"
+        ],
+        {
+          cwd: tempDirectory,
+          encoding: "utf8"
+        }
+      );
+
+      expect(branchResult.status).toBe(0);
+      expect(branchResult.stdout).toContain(
+        "CMPAAAAAAAA-60/paperclip-github-automation-ci-baseline"
+      );
+
+      const currentBranchResult = spawnSync("git", ["branch", "--show-current"], {
+        cwd: tempDirectory,
+        encoding: "utf8"
+      });
+
+      expect(currentBranchResult.stdout.trim()).toBe(
+        "CMPAAAAAAAA-60/paperclip-github-automation-ci-baseline"
+      );
+    } finally {
+      rmSync(tempDirectory, { recursive: true, force: true });
+    }
   });
 
   it("runs the public preflight in local-only mode", () => {

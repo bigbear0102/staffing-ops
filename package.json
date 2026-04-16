@@ -19,6 +19,7 @@
     "test": "pnpm test:unit && pnpm test:integration",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
     "paperclip:branch": "node scripts/create-paperclip-branch.mjs",
+    "paperclip:pr-body": "node scripts/create-paperclip-pr-body.mjs",
     "validate:branch": "node scripts/validate-branch-name.mjs",
     "validate:pr": "node scripts/validate-pr-metadata.mjs"
   },

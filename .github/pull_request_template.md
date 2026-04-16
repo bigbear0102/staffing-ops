@@ -1,3 +1,5 @@
+> Helper: `pnpm paperclip:pr-body -- <ISSUE-ID>`로 Paperclip 링크가 포함된 본문 skeleton을 생성할 수 있습니다.
+
 ## 연결된 Paperclip 이슈
 
 - [CMPAAAAAAAA-000](/CMPAAAAAAAA/issues/CMPAAAAAAAA-000)

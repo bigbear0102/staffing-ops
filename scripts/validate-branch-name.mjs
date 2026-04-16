@@ -1,7 +1,9 @@
 import { execFileSync } from "node:child_process";
 
+const cliArgs = process.argv.slice(2).filter((argument) => argument !== "--");
+
 const branchName =
-  process.argv[2] ||
+  cliArgs[0] ||
   process.env.GITHUB_HEAD_REF ||
   execFileSync("git", ["branch", "--show-current"], { encoding: "utf8" }).trim();
 

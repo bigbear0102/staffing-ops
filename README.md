@@ -20,6 +20,9 @@
 
 - branch 이름은 Paperclip issue identifier를 사용해야 합니다: `<issue-identifier>/<short-kebab-title>`
 - pull request 제목은 Paperclip issue identifier를 사용해야 합니다: `[<issue-identifier>] <summary>`
+- branch와 PR 본문 skeleton은 helper로 생성합니다:
+  - `pnpm paperclip:branch -- <ISSUE-ID> "<short branch title>"`
+  - `pnpm paperclip:pr-body -- <ISSUE-ID>`
 - pull request 본문에는 아래 항목이 모두 들어가야 합니다:
   - 연결된 Paperclip 이슈
   - 변경 요약
@@ -45,10 +48,12 @@ pnpm build
 pnpm demo:bundle
 pnpm public:preflight -- --require-public
 pnpm paperclip:branch -- CMPAAAAAAAA-32 "bootstrap repo baseline"
+pnpm paperclip:pr-body -- CMPAAAAAAAA-32
 ```
 
 `pnpm demo:bundle`는 workspace를 다시 빌드한 뒤 reviewable bundle을 `artifacts/demo-bundle/`에 생성합니다. 여기에는 admin HTML snapshot과 design-partner pilot proof JSON payload가 포함됩니다. 생성된 인덱스는 `artifacts/demo-bundle/README.md`에서 확인할 수 있습니다.
 `pnpm public:preflight`는 공개 전환에 필요한 파일, secret 패턴, generated artifact ignore 규칙, demo bundle 재생성, GitHub visibility를 한 번에 점검합니다. public 전환 전에 로컬 준비만 확인할 때는 `--skip-github`, 전환 직후 최종 확인에는 `--require-public`을 사용합니다.
+`pnpm paperclip:pr-body`는 제목의 issue identifier와 동일한 Paperclip 링크를 넣은 PR body skeleton을 출력하므로, GitHub와 Paperclip 간 link drift를 줄일 수 있습니다.
 CI도 같은 명령을 실행하고 `artifacts/demo-bundle/`를 `demo-bundle` workflow artifact로 업로드해 pull request 검토에 사용합니다.
 
 ## 초기 CI 기준선

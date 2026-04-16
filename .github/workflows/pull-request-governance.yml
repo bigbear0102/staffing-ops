@@ -1,9 +1,16 @@
 name: PR 거버넌스
 
 on:
+  push:
+    branches-ignore:
+      - main
   pull_request:
     branches:
       - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -15,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 브랜치 이름 검증
-        run: node scripts/validate-branch-name.mjs "${{ github.head_ref }}"
+        run: node scripts/validate-branch-name.mjs "${{ github.head_ref || github.ref_name }}"
       - name: PR 제목 및 본문 검증
+        if: github.event_name == 'pull_request'
         run: node scripts/validate-pr-metadata.mjs "${{ github.event.pull_request.title }}" "${{ github.event.pull_request.body }}"

@@ -62,6 +62,9 @@
 - acceptance criteria
 - dependency or parent link
 - When work starts, the assignee checks out the Paperclip issue and creates the matching Git branch.
+- Repository helpers for the default handoff:
+- `pnpm paperclip:branch -- <ISSUE-ID> "<short branch title>"`
+- `pnpm paperclip:pr-body -- <ISSUE-ID>`
 - Once the PR exists, the assignee posts the PR link back to the Paperclip issue comment thread.
 - CI status, review outcomes, and merge completion are reflected back into Paperclip comments.
 - Issue status progression should remain anchored in Paperclip:

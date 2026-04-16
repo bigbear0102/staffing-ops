@@ -1,10 +1,20 @@
 import { spawnSync } from "node:child_process";
 
-const [issueIdentifier, ...titleParts] = process.argv.slice(2);
+const [issueIdentifier, ...titleParts] = process.argv
+  .slice(2)
+  .filter((argument) => argument !== "--");
 const rawTitle = titleParts.join(" ").trim();
+const issueIdentifierPattern = /^[A-Z0-9]+-\d+$/;
 
 if (!issueIdentifier || !rawTitle) {
   console.error("사용법: pnpm paperclip:branch -- <ISSUE-ID> <branch title>");
+  process.exit(1);
+}
+
+if (!issueIdentifierPattern.test(issueIdentifier)) {
+  console.error(
+    `Paperclip issue identifier "${issueIdentifier}" 형식이 올바르지 않습니다. 예: "CMPAAAAAAAA-60".`
+  );
   process.exit(1);
 }
 

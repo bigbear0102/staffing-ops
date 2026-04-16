@@ -8,11 +8,22 @@
 
 ## Applies To
 
+- `docs/staffing-ops-qa-release-gate.md`: first-pass thin-slice gate for merge review, UAT review, and release-candidate review
 - `docs/staffing-ops-order-to-placement-verification-pack.md`
 - `docs/staffing-ops-attendance-to-billing-verification-pack.md`
 - [CMPAAAAAAAA-43](/CMPAAAAAAAA/issues/CMPAAAAAAAA-43): spreadsheet-first finance handoff export contract
 - [CMPAAAAAAAA-44](/CMPAAAAAAAA/issues/CMPAAAAAAAA-44): audit timeline and billing review surface
 - any branch, release ticket, or pilot review that claims the staffing workflow is ready for operator use beyond seeded shell proof
+
+## Relationship To The Thin-Slice Gate
+
+- Start with `docs/staffing-ops-qa-release-gate.md` when deciding whether a workflow-critical branch is merge-ready or whether a release candidate is reviewable.
+- Use this document only when the review claim escalates to `pilot-ready`, `operator-ready beyond seeded proof`, or `persisted evidence complete`.
+- A branch can satisfy the thin-slice gate while still failing this pilot-hardening pack.
+- QA sign-off must state explicitly which bar was met:
+  - thin-slice merge-ready
+  - thin-slice release-candidate ready
+  - pilot-ready
 
 ## Pilot Hardening Principles
 

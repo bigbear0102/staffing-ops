@@ -3,6 +3,7 @@
 ## Purpose
 
 - Define the merge and release-quality gate for the first `internal operations OS` implementation loop.
+- Act as the primary review document for the thin slice chosen in [CMPAAAAAAAA-55](/CMPAAAAAAAA/issues/CMPAAAAAAAA-55): `Order -> Placement -> Attendance -> Billing handoff`.
 - Convert the P0 acceptance criteria from [CMPAAAAAAAA-22](/CMPAAAAAAAA/issues/CMPAAAAAAAA-22) into reproducible verification, UAT, and evidence requirements.
 - Give CTO, PM, backend, frontend, and QA one shared checklist before pilot-facing rollout.
 
@@ -13,6 +14,14 @@
 - `docs/staffing-ops-order-to-placement-verification-pack.md`: merge-review proof pack for [CMPAAAAAAAA-37](/CMPAAAAAAAA/issues/CMPAAAAAAAA-37) and [CMPAAAAAAAA-38](/CMPAAAAAAAA/issues/CMPAAAAAAAA-38)
 - `docs/staffing-ops-attendance-to-billing-verification-pack.md`: merge-review proof pack for [CMPAAAAAAAA-40](/CMPAAAAAAAA/issues/CMPAAAAAAAA-40) and [CMPAAAAAAAA-41](/CMPAAAAAAAA/issues/CMPAAAAAAAA-41)
 - Any PR that changes `Order -> Assignment -> Attendance -> Invoice handoff` behavior or the supporting audit / evidence path
+
+## Thin-Slice Gate Snapshot
+
+| Review moment | Required now | Still allowed to remain manual | Release consequence |
+| --- | --- | --- | --- |
+| Workflow-critical PR merge review | green CI, branch/PR governance, slice-specific evidence, explicit risk notes | seeded UI playback, manual screenshots, scripted terminal traces | branch may merge only if the changed path is reviewable and no P0 regression is open |
+| Thin-slice release candidate review | all six UAT scenarios, role-boundary checks, audit checks, billing-readiness proof, mobile resilience proof | manual network toggling, manual evidence archive assembly | branch may be demo-ready but is not pilot-ready if any required proof is missing |
+| Pilot entry review | everything above plus the persisted evidence expectations in `docs/staffing-ops-pilot-hardening-verification-pack.md` | no unresolved manual-only gap on export traceability, audit reconstruction, or permission enforcement | rollout is blocked until the pilot-hardening pack is satisfied |
 
 ## Gate Levels
 
@@ -75,6 +84,19 @@ These gaps must be covered by new automation or by explicit PR/UAT evidence befo
 - No mobile retry or photo-upload recovery automation exists yet.
 - No invoice handoff contract/export verification exists yet.
 
+## Thin-Slice Acceptance Matrix
+
+Use this matrix first during review. The detailed UAT scenarios later in this document expand each row into a reproducible walkthrough.
+
+| Area | Must be proven | Primary failure modes to watch | Roles that must see the correct boundary | Minimum proof |
+| --- | --- | --- | --- | --- |
+| Placement readiness and commit | one staffing-ready order can create a traceable assignment snapshot | missing commercial fields, hidden worker blockers, fill-count drift after commit | `Operations Coordinator`, `Operations Manager` | demand or placement capture plus pre/post commit trace with `orderId` and `assignmentId` |
+| Placement blocker and override path | blocked workers stay blocked unless an explicit override reason is captured | generic blocker copy, override without typed justification, override actor lost after commit | `Operations Coordinator`, `Operations Manager` | blocked-state proof, override proof, and audit proof tied to the same assignment |
+| Attendance exception handling and correction path | no-show, late, overtime, replacement, cutoff miss, and retro correction stay reviewable from original state through final decision | correction overwrites source values, re-approval is implied instead of explicit, exception history disappears | `Operations Coordinator`, `Site Lead Mobile`, `Operations Manager` | queue before/after capture plus audit proof showing original state, correction reason, and final approver |
+| Billing readiness and blocked handoff | only approved attendance reaches finance handoff and unresolved blockers remain legible | blocked rows leak into billing-ready state, manual adjustments lack reasons, finance cannot trace the source row | `Finance Admin`, `Operations Coordinator` | blocked billing capture, resolved billing capture, and export or handoff proof with source attendance linkage |
+| Audit traceability | every critical state change is reconstructable from persisted or reviewable evidence | actor/timestamp missing, before/after delta missing, identifiers cannot be correlated across screens and payloads | all four roles above plus QA reviewer | audit timeline or payload showing `actor`, `timestamp`, `entity`, `action`, and reason when applicable |
+| Mobile resilience and vocabulary alignment | mobile roster vocabulary matches desktop placement state and retry behavior does not duplicate submissions | status mismatch between desktop and mobile, retry creates duplicate attendance, failed upload loses record context | `Site Lead Mobile`, `Operations Coordinator` | paired desktop/mobile captures plus unstable-network retry proof |
+
 ## P0 Acceptance Checklist
 
 Each criterion below must be verified with evidence before pilot entry.
@@ -88,6 +110,26 @@ Each criterion below must be verified with evidence before pilot entry.
 | Operator can resolve `no-show`, `late arrival`, `overtime`, `replacement`, `attendance cutoff miss`, `retro correction`, and `billing dispute` from queue-driven workflows | run queue resolution on each exception type | queue screenshot before and after resolution, with notes |
 | Only approved attendance reaches billing handoff | attempt billing handoff with approved and unapproved rows mixed | readiness screenshot showing block + success after approval |
 | Every critical state change is traceable | inspect audit history after state changes | audit timeline with actor, timestamp, before/after, reason |
+
+## Explicit Risk Watchlist
+
+These are the thin-slice risks that reviewers must call out explicitly in PR notes, release notes, or pilot-review notes whenever the proof is incomplete.
+
+- Role-boundary drift:
+  - `Operations Coordinator` or `Site Lead Mobile` can perform finance-only or manager-only actions without an explicit acting flow
+  - `Finance Admin` can move billing forward without a reviewable approval trail back to attendance
+- Correction-path lossiness:
+  - overtime, retro correction, or replacement flows mutate the latest row without preserving the original submission or reason
+  - re-approval or override is visible in the final state but not reviewable as its own decision point
+- Approval leakage into billing:
+  - unresolved attendance rows or manual adjustments appear billing-ready before approval or justification is complete
+  - blocked rows are hidden behind aggregate billing status with no drill-through to the offending source record
+- Audit blind spots:
+  - state changes occur in UI or domain logic without a reviewable actor, timestamp, or reason
+  - exported or handed-off billing artifacts cannot be correlated back to assignment and attendance identifiers
+- Mobile recovery drift:
+  - retry after network loss creates duplicate submissions or loses selected-row context
+  - mobile status vocabulary diverges from desktop placement or attendance queue terminology
 
 ## Reproducible Verification Pack
 
