@@ -1,0 +1,48 @@
+{
+  "fixtureId": "design-partner-pilot-v1",
+  "environmentName": "pilot-reviewable-proof",
+  "timezone": "Asia/Seoul",
+  "operatorRolesUsed": [
+    "admin",
+    "operations_operator",
+    "operations_manager",
+    "finance_admin",
+    "site_lead"
+  ],
+  "trace": {
+    "orderId": "order-cold-chain-pilot-1",
+    "assignmentIds": [
+      "assignment-cold-chain-ready-1",
+      "assignment-cold-chain-override-1"
+    ],
+    "approvedAttendanceIds": [
+      "attendance-clean-approved-1",
+      "attendance-corrected-approved-1"
+    ],
+    "excludedAttendanceIds": [
+      "attendance-blocked-unapproved-1"
+    ],
+    "exportBatchId": "billing-handoff-batch-pilot-1",
+    "exportBatchKey": "billing-handoff:billing-handoff-batch-pilot-1"
+  },
+  "billing": {
+    "exportBatchId": "billing-handoff-batch-pilot-1",
+    "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+    "eligibleAssignmentIds": [
+      "assignment-cold-chain-ready-1",
+      "assignment-cold-chain-override-1"
+    ],
+    "excludedAttendanceIds": [
+      "attendance-blocked-unapproved-1"
+    ],
+    "sourceAttendanceIds": [
+      "attendance-clean-approved-1",
+      "attendance-corrected-approved-1"
+    ]
+  },
+  "permissions": {
+    "placementOverrideDenied": "Role operations_operator cannot perform placement.override. Allowed roles: admin, operations_manager.",
+    "attendanceCorrectionDenied": "Role site_lead cannot perform attendance.correction. Allowed roles: admin, operations_manager, operations_operator.",
+    "billingExportDenied": "Role site_lead cannot perform billing.finance_handoff_export. Allowed roles: admin, operations_manager, finance_admin."
+  }
+}

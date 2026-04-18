@@ -1,0 +1,73 @@
+{
+  "command": "pnpm demo:bundle",
+  "outputDirectory": "artifacts/demo-bundle",
+  "flowSnapshots": [
+    {
+      "file": "admin/01-work-queue-desktop.html",
+      "title": "Work queue baseline (desktop)",
+      "description": "Baseline desktop queue for operator triage."
+    },
+    {
+      "file": "admin/02-work-queue-mobile.html",
+      "title": "Work queue baseline (mobile)",
+      "description": "Mobile variant for site or manager review."
+    },
+    {
+      "file": "admin/03-demand-draft.html",
+      "title": "Demand draft with commercial blockers",
+      "description": "Incheon order before commercial fields are fully resolved."
+    },
+    {
+      "file": "admin/04-demand-publish-ready.html",
+      "title": "Demand draft after commercial unblock",
+      "description": "Same order after bill rate and overtime policy are completed."
+    },
+    {
+      "file": "admin/05-demand-published.html",
+      "title": "Published demand order",
+      "description": "Order moved from blocked draft into staffing-ready state."
+    },
+    {
+      "file": "admin/06-placement-selected.html",
+      "title": "Placement candidate selected",
+      "description": "Override-required candidate selected for Seoul East Mall."
+    },
+    {
+      "file": "admin/07-placement-override-armed.html",
+      "title": "Placement override armed",
+      "description": "Manager rationale attached so the commit can proceed."
+    },
+    {
+      "file": "admin/08-placement-committed.html",
+      "title": "Placement committed",
+      "description": "Override commit captured and order headcount advanced."
+    },
+    {
+      "file": "admin/09-attendance-review.html",
+      "title": "Attendance under exception review",
+      "description": "Finance-impacting overtime row still waiting on operator approval."
+    },
+    {
+      "file": "admin/10-attendance-approved.html",
+      "title": "Attendance approved",
+      "description": "Attendance row approved and billing draft unblocked."
+    },
+    {
+      "file": "admin/11-billing-ready.html",
+      "title": "Billing handoff ready",
+      "description": "Billing draft opened after approval released the export gate."
+    }
+  ],
+  "proofFiles": [
+    {
+      "file": "proof/design-partner-pilot.bundle.json",
+      "title": "Design partner pilot proof bundle",
+      "description": "Full pilot-reviewable proof payload with audit trails and export artifact."
+    },
+    {
+      "file": "proof/design-partner-pilot.summary.json",
+      "title": "Design partner pilot proof summary",
+      "description": "Compact summary of the pilot trace, export batch, and denied role-boundary proofs."
+    }
+  ]
+}

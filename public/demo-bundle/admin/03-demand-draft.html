@@ -1,0 +1,632 @@
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Staffing Ops Admin Demo</title>
+        
+    <style>
+      :root {
+        --bg: #f6f2ea;
+        --panel: rgba(255, 255, 255, 0.9);
+        --panel-strong: #fffaf1;
+        --ink: #1f2933;
+        --muted: #66707c;
+        --line: rgba(31, 41, 51, 0.11);
+        --accent: #115e59;
+        --accent-soft: rgba(17, 94, 89, 0.12);
+        --success: #2f7d4a;
+        --success-soft: rgba(47, 125, 74, 0.12);
+        --warning: #b96a12;
+        --warning-soft: rgba(185, 106, 18, 0.13);
+        --danger: #a2373f;
+        --danger-soft: rgba(162, 55, 63, 0.12);
+        --shadow: 0 20px 44px rgba(31, 41, 51, 0.09);
+        --radius: 22px;
+        font-family: "IBM Plex Sans KR", "Pretendard", "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(17, 94, 89, 0.14), transparent 32%),
+          linear-gradient(180deg, #fbf8f2 0%, #f3ede2 100%);
+      }
+
+      .canvas {
+        min-height: 100vh;
+        padding: 28px;
+        background-image:
+          linear-gradient(rgba(17, 94, 89, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 94, 89, 0.04) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 22px;
+      }
+
+      .sidebar,
+      .content {
+        border: 1px solid var(--line);
+        border-radius: calc(var(--radius) + 4px);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .sidebar {
+        padding: 24px 18px;
+      }
+
+      .content {
+        padding: 28px;
+      }
+
+      .brand {
+        margin-bottom: 22px;
+      }
+
+      .brand p,
+      .hero p,
+      .muted,
+      th,
+      td,
+      span {
+        color: var(--muted);
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 1.15rem;
+        color: var(--ink);
+      }
+
+      .nav {
+        display: grid;
+        gap: 10px;
+      }
+
+      .nav-link {
+        display: grid;
+        gap: 4px;
+        padding: 14px 16px;
+        color: inherit;
+        text-decoration: none;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .nav-link-active {
+        border-color: rgba(17, 94, 89, 0.4);
+        background: var(--accent-soft);
+      }
+
+      .hero,
+      .panel,
+      .subpanel,
+      .metric-card,
+      .candidate-card,
+      .draft-card,
+      .roster-card,
+      .alert,
+      .timeline-entry {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel-strong);
+      }
+
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 24px;
+        margin-bottom: 20px;
+      }
+
+      .hero.compact {
+        align-items: center;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.73rem;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      strong {
+        color: var(--ink);
+      }
+
+      h1 {
+        margin: 8px 0 10px;
+        font-size: clamp(1.9rem, 2.8vw, 3rem);
+        line-height: 1;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .lede {
+        max-width: 64ch;
+        margin: 0;
+      }
+
+      .hero-actions,
+      .hero-meta,
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      button,
+      .pill {
+        border-radius: 999px;
+        border: 1px solid transparent;
+        padding: 10px 14px;
+        font: inherit;
+      }
+
+      button {
+        background: var(--ink);
+        color: white;
+        cursor: default;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.87rem;
+        color: var(--ink);
+        background: rgba(31, 41, 51, 0.06);
+      }
+
+      .pill-accent {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .pill-success {
+        background: var(--success-soft);
+        color: var(--success);
+      }
+
+      .pill-warning {
+        background: var(--warning-soft);
+        color: var(--warning);
+      }
+
+      .pill-danger {
+        background: var(--danger-soft);
+        color: var(--danger);
+      }
+
+      .metric-grid,
+      .stack,
+      .candidate-list,
+      .draft-list,
+      .alert-list,
+      .mobile-roster,
+      .timeline {
+        display: grid;
+        gap: 16px;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        margin-bottom: 20px;
+      }
+
+      .metric-card {
+        padding: 18px;
+      }
+
+      .metric-card strong {
+        display: block;
+        margin: 10px 0 6px;
+        font-size: 2rem;
+      }
+
+      .two-column,
+      .three-column {
+        display: grid;
+        gap: 18px;
+      }
+
+      .two-column {
+        grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+      }
+
+      .two-column.wide-right {
+        grid-template-columns: minmax(0, 1.6fr) minmax(360px, 1fr);
+      }
+
+      .three-column {
+        grid-template-columns: minmax(240px, 0.95fr) minmax(0, 1.3fr) minmax(320px, 1fr);
+      }
+
+      .panel,
+      .subpanel,
+      .candidate-card,
+      .draft-card,
+      .roster-card,
+      .alert,
+      .timeline-entry {
+        padding: 18px;
+      }
+
+      .subpanel,
+      .timeline-entry {
+        background: white;
+      }
+
+      .panel-header,
+      .subpanel-header,
+      .candidate-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 12px 10px;
+        border-top: 1px solid var(--line);
+        font-size: 0.92rem;
+      }
+
+      thead th {
+        border-top: 0;
+        padding-top: 18px;
+      }
+
+      .delta-table th,
+      .delta-table td {
+        font-size: 0.84rem;
+      }
+
+      ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .tree-node + .tree-node {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+
+      .summary-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .summary-grid span {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .mobile-hero,
+      .mobile-panel,
+      .mobile-metric-grid {
+        max-width: 520px;
+        margin-inline: auto;
+      }
+
+      .mobile-metric-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .mobile-metric-grid .metric-card strong {
+        font-size: 1.5rem;
+      }
+
+      .mobile-roster .roster-card {
+        background: white;
+      }
+
+      .recovery-grid {
+        display: grid;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .recovery-card {
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(246, 242, 234, 0.8);
+      }
+
+      .recovery-meta {
+        margin: 14px 0 0;
+      }
+
+      @media (max-width: 1180px) {
+        .shell,
+        .three-column,
+        .two-column,
+        .two-column.wide-right,
+        .metric-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          order: 2;
+        }
+      }
+    </style>
+  
+      </head>
+      <body>
+        <main class="canvas">
+          <div class="shell">
+            <aside class="sidebar">
+              <div class="brand">
+                <p>Asia/Seoul / KRW / same-day ops</p>
+                <strong>South Korea staffing control tower</strong>
+                <span>Client order intake, placement, attendance review, and invoice handoff in one operator loop.</span>
+              </div>
+              
+    <nav class="nav">
+      
+            <a class="nav-link" href="#work-queue">
+              <strong>Work Queue</strong>
+              <span>Queue-first control tower for blockers, SLAs, and next actions.</span>
+            </a>
+          
+            <a class="nav-link nav-link-active" href="#demand">
+              <strong>Demand</strong>
+              <span>Client, site, and order intake workspace.</span>
+            </a>
+          
+            <a class="nav-link" href="#placement">
+              <strong>Placement</strong>
+              <span>Compare candidates and commit assignment snapshots.</span>
+            </a>
+          
+            <a class="nav-link" href="#attendance">
+              <strong>Attendance</strong>
+              <span>Approve clean rows fast and resolve exceptions inline.</span>
+            </a>
+          
+            <a class="nav-link" href="#billing">
+              <strong>Billing</strong>
+              <span>Invoice handoff queue with trace-back to attendance.</span>
+            </a>
+          
+            <a class="nav-link" href="#site-lead-roster">
+              <strong>Site Lead Roster</strong>
+              <span>Mobile-first day-of roster for attendance, exception, and evidence entry.</span>
+            </a>
+          
+    </nav>
+  
+            </aside>
+            <section class="content" data-route="demand">
+              
+    <section class="hero compact">
+      <div>
+        <p class="eyebrow">Demand</p>
+        <h1>Demand workspace</h1>
+        <p class="lede">Structured order intake on the right, active order detail in the center, client/site context on the left.</p>
+      </div>
+      <div class="hero-meta">
+        <span class="pill pill-warning" title="Missing rate or overtime terms before release.">Pending commercial</span>
+        <span class="pill pill-warning" title="Missing rate or overtime terms before release.">Pending commercial</span>
+      </div>
+    </section>
+    <section class="three-column">
+      <article class="panel">
+        <header class="panel-header">
+          <h2>Clients & sites</h2>
+          <span>Saved context</span>
+        </header>
+        
+              <div class="tree-node">
+                <strong>Hanbit Retail</strong>
+                <ul>
+                  <li>Seoul East Mall <span class="muted">1 open</span></li>
+                </ul>
+              </div>
+            
+              <div class="tree-node">
+                <strong>Daesung Devices</strong>
+                <ul>
+                  <li>Suwon Assembly Campus <span class="muted">1 open</span></li>
+                </ul>
+              </div>
+            
+              <div class="tree-node">
+                <strong>Blue Harbor Hotel Group</strong>
+                <ul>
+                  <li>Busan Harbor Hotel <span class="muted">1 open</span></li>
+                </ul>
+              </div>
+            
+              <div class="tree-node">
+                <strong>Mirae Logistics</strong>
+                <ul>
+                  <li>Incheon Cold Chain Hub <span class="muted">1 open</span></li>
+                </ul>
+              </div>
+            
+      </article>
+      <article class="panel">
+        <header class="panel-header">
+          <h2>Orders</h2>
+          <span>Queue-first inventory</span>
+        </header>
+        <table>
+          <thead>
+            <tr>
+              <th>Client / site</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Fill</th>
+              <th>Risk</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+                  <tr>
+                    <td>
+                      <strong>Hanbit Retail</strong>
+                      <div class="muted">Seoul East Mall</div>
+                    </td>
+                    <td>Weekend merchandising crew</td>
+                    <td><span class="pill pill-accent" title="Can move directly into the staffing queue.">Ready for staffing</span></td>
+                    <td>8/12</td>
+                    <td>critical</td>
+                  </tr>
+                
+                  <tr>
+                    <td>
+                      <strong>Daesung Devices</strong>
+                      <div class="muted">Suwon Assembly Campus</div>
+                    </td>
+                    <td>Night inspection operator</td>
+                    <td><span class="pill pill-success" title="Live assignment coverage is under day-of-ops control.">In service</span></td>
+                    <td>6/6</td>
+                    <td>high</td>
+                  </tr>
+                
+                  <tr>
+                    <td>
+                      <strong>Blue Harbor Hotel Group</strong>
+                      <div class="muted">Busan Harbor Hotel</div>
+                    </td>
+                    <td>Housekeeping float team</td>
+                    <td><span class="pill pill-success" title="All requested headcount is placed.">Fully filled</span></td>
+                    <td>9/9</td>
+                    <td>medium</td>
+                  </tr>
+                
+                  <tr>
+                    <td>
+                      <strong>Mirae Logistics</strong>
+                      <div class="muted">Incheon Cold Chain Hub</div>
+                    </td>
+                    <td>Warehouse loader</td>
+                    <td><span class="pill pill-warning" title="Missing rate or overtime terms before release.">Pending commercial</span></td>
+                    <td>0/4</td>
+                    <td>high</td>
+                  </tr>
+                
+          </tbody>
+        </table>
+      </article>
+      <div class="stack">
+        <article class="panel">
+          <header class="panel-header">
+            <h2>Selected order detail</h2>
+            <span>Next action first</span>
+          </header>
+          <div class="summary-grid">
+            <div><span>Role</span><strong>Warehouse loader</strong></div>
+            <div><span>Date range</span><strong>2026-04-09 -&gt; 2026-05-02</strong></div>
+            <div><span>Shift pattern</span><strong>Tue-Sat / 06:00-15:00</strong></div>
+            <div><span>Fill state</span><strong>0/4</strong></div>
+          </div>
+          <ul><li>Primary action: Publish order</li><li>Source evidence: Call memo 77</li><li>Attendance route: Site lead roster confirmation</li><li>Bill rate: Pending confirmation</li></ul>
+        </article>
+        <article class="panel">
+          <header class="panel-header">
+            <h2>Order intake editor</h2>
+            <span>
+              <span class="pill pill-warning">Resolve blockers</span>
+            </span>
+          </header>
+          
+                <article class="subpanel">
+                  <div class="subpanel-header">
+                    <strong>Publish blockers</strong>
+                    <span class="pill pill-warning">Blocked</span>
+                  </div>
+                  <ul><li>Bill rate is still missing.</li><li>Overtime rule still needs an explicit value.</li></ul>
+                </article>
+              
+          
+                <article class="subpanel">
+                  <div class="subpanel-header">
+                    <strong>Client and site</strong>
+                    <span class="pill pill-success">Complete</span>
+                  </div>
+                  <ul><li>Client: Mirae Logistics</li><li>Site: Incheon Cold Chain Hub</li><li>Evidence source: Call memo 77</li></ul>
+                </article>
+              
+                <article class="subpanel">
+                  <div class="subpanel-header">
+                    <strong>Role and staffing need</strong>
+                    <span class="pill pill-success">Complete</span>
+                  </div>
+                  <ul><li>Role: Warehouse loader</li><li>Headcount: 4</li><li>Service type: dispatch</li></ul>
+                </article>
+              
+                <article class="subpanel">
+                  <div class="subpanel-header">
+                    <strong>Schedule and approval route</strong>
+                    <span class="pill pill-success">Complete</span>
+                  </div>
+                  <ul><li>Date range: 2026-04-09 -&gt; 2026-05-02</li><li>Shift pattern: Tue-Sat / 06:00-15:00</li><li>Attendance approval: Site lead roster confirmation</li></ul>
+                </article>
+              
+                <article class="subpanel">
+                  <div class="subpanel-header">
+                    <strong>Rate and overtime rules</strong>
+                    <span class="pill pill-warning">Blocked</span>
+                  </div>
+                  <ul><li>Bill rate: Pending confirmation</li><li>Overtime rule: Pending confirmation</li><li>Bill rate is still missing. Overtime rule still needs an explicit value.</li></ul>
+                </article>
+              
+                <article class="subpanel">
+                  <div class="subpanel-header">
+                    <strong>Review and publish</strong>
+                    <span class="pill pill-warning">Blocked</span>
+                  </div>
+                  <ul><li>Draft can be saved without loss of context.</li><li>Publish becomes available only when commercial blockers clear.</li></ul>
+                </article>
+              
+        </article>
+      </div>
+    </section>
+  
+            </section>
+          </div>
+        </main>
+      </body>
+    </html>
+  

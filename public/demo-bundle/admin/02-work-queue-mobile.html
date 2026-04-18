@@ -1,0 +1,592 @@
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Staffing Ops Admin Demo</title>
+        
+    <style>
+      :root {
+        --bg: #f6f2ea;
+        --panel: rgba(255, 255, 255, 0.9);
+        --panel-strong: #fffaf1;
+        --ink: #1f2933;
+        --muted: #66707c;
+        --line: rgba(31, 41, 51, 0.11);
+        --accent: #115e59;
+        --accent-soft: rgba(17, 94, 89, 0.12);
+        --success: #2f7d4a;
+        --success-soft: rgba(47, 125, 74, 0.12);
+        --warning: #b96a12;
+        --warning-soft: rgba(185, 106, 18, 0.13);
+        --danger: #a2373f;
+        --danger-soft: rgba(162, 55, 63, 0.12);
+        --shadow: 0 20px 44px rgba(31, 41, 51, 0.09);
+        --radius: 22px;
+        font-family: "IBM Plex Sans KR", "Pretendard", "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(17, 94, 89, 0.14), transparent 32%),
+          linear-gradient(180deg, #fbf8f2 0%, #f3ede2 100%);
+      }
+
+      .canvas {
+        min-height: 100vh;
+        padding: 28px;
+        background-image:
+          linear-gradient(rgba(17, 94, 89, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 94, 89, 0.04) 1px, transparent 1px);
+        background-size: 28px 28px;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 22px;
+      }
+
+      .sidebar,
+      .content {
+        border: 1px solid var(--line);
+        border-radius: calc(var(--radius) + 4px);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+      }
+
+      .sidebar {
+        padding: 24px 18px;
+      }
+
+      .content {
+        padding: 28px;
+      }
+
+      .brand {
+        margin-bottom: 22px;
+      }
+
+      .brand p,
+      .hero p,
+      .muted,
+      th,
+      td,
+      span {
+        color: var(--muted);
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 1.15rem;
+        color: var(--ink);
+      }
+
+      .nav {
+        display: grid;
+        gap: 10px;
+      }
+
+      .nav-link {
+        display: grid;
+        gap: 4px;
+        padding: 14px 16px;
+        color: inherit;
+        text-decoration: none;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .nav-link-active {
+        border-color: rgba(17, 94, 89, 0.4);
+        background: var(--accent-soft);
+      }
+
+      .hero,
+      .panel,
+      .subpanel,
+      .metric-card,
+      .candidate-card,
+      .draft-card,
+      .roster-card,
+      .alert,
+      .timeline-entry {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel-strong);
+      }
+
+      .hero {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 24px;
+        margin-bottom: 20px;
+      }
+
+      .hero.compact {
+        align-items: center;
+      }
+
+      .eyebrow {
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.73rem;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      strong {
+        color: var(--ink);
+      }
+
+      h1 {
+        margin: 8px 0 10px;
+        font-size: clamp(1.9rem, 2.8vw, 3rem);
+        line-height: 1;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .lede {
+        max-width: 64ch;
+        margin: 0;
+      }
+
+      .hero-actions,
+      .hero-meta,
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      button,
+      .pill {
+        border-radius: 999px;
+        border: 1px solid transparent;
+        padding: 10px 14px;
+        font: inherit;
+      }
+
+      button {
+        background: var(--ink);
+        color: white;
+        cursor: default;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.87rem;
+        color: var(--ink);
+        background: rgba(31, 41, 51, 0.06);
+      }
+
+      .pill-accent {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      .pill-success {
+        background: var(--success-soft);
+        color: var(--success);
+      }
+
+      .pill-warning {
+        background: var(--warning-soft);
+        color: var(--warning);
+      }
+
+      .pill-danger {
+        background: var(--danger-soft);
+        color: var(--danger);
+      }
+
+      .metric-grid,
+      .stack,
+      .candidate-list,
+      .draft-list,
+      .alert-list,
+      .mobile-roster,
+      .timeline {
+        display: grid;
+        gap: 16px;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        margin-bottom: 20px;
+      }
+
+      .metric-card {
+        padding: 18px;
+      }
+
+      .metric-card strong {
+        display: block;
+        margin: 10px 0 6px;
+        font-size: 2rem;
+      }
+
+      .two-column,
+      .three-column {
+        display: grid;
+        gap: 18px;
+      }
+
+      .two-column {
+        grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+      }
+
+      .two-column.wide-right {
+        grid-template-columns: minmax(0, 1.6fr) minmax(360px, 1fr);
+      }
+
+      .three-column {
+        grid-template-columns: minmax(240px, 0.95fr) minmax(0, 1.3fr) minmax(320px, 1fr);
+      }
+
+      .panel,
+      .subpanel,
+      .candidate-card,
+      .draft-card,
+      .roster-card,
+      .alert,
+      .timeline-entry {
+        padding: 18px;
+      }
+
+      .subpanel,
+      .timeline-entry {
+        background: white;
+      }
+
+      .panel-header,
+      .subpanel-header,
+      .candidate-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        text-align: left;
+        vertical-align: top;
+        padding: 12px 10px;
+        border-top: 1px solid var(--line);
+        font-size: 0.92rem;
+      }
+
+      thead th {
+        border-top: 0;
+        padding-top: 18px;
+      }
+
+      .delta-table th,
+      .delta-table td {
+        font-size: 0.84rem;
+      }
+
+      ul {
+        margin: 12px 0 0;
+        padding-left: 18px;
+      }
+
+      li + li {
+        margin-top: 8px;
+      }
+
+      .tree-node + .tree-node {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+
+      .summary-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .summary-grid span {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .mobile-hero,
+      .mobile-panel,
+      .mobile-metric-grid {
+        max-width: 520px;
+        margin-inline: auto;
+      }
+
+      .mobile-metric-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .mobile-metric-grid .metric-card strong {
+        font-size: 1.5rem;
+      }
+
+      .mobile-roster .roster-card {
+        background: white;
+      }
+
+      .recovery-grid {
+        display: grid;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .recovery-card {
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: rgba(246, 242, 234, 0.8);
+      }
+
+      .recovery-meta {
+        margin: 14px 0 0;
+      }
+
+      @media (max-width: 1180px) {
+        .shell,
+        .three-column,
+        .two-column,
+        .two-column.wide-right,
+        .metric-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          order: 2;
+        }
+      }
+    </style>
+  
+      </head>
+      <body>
+        <main class="canvas">
+          <div class="shell">
+            <aside class="sidebar">
+              <div class="brand">
+                <p>Asia/Seoul / KRW / same-day ops</p>
+                <strong>South Korea staffing control tower</strong>
+                <span>Client order intake, placement, attendance review, and invoice handoff in one operator loop.</span>
+              </div>
+              
+    <nav class="nav">
+      
+            <a class="nav-link" href="#work-queue">
+              <strong>Work Queue</strong>
+              <span>Queue-first control tower for blockers, SLAs, and next actions.</span>
+            </a>
+          
+            <a class="nav-link" href="#demand">
+              <strong>Demand</strong>
+              <span>Client, site, and order intake workspace.</span>
+            </a>
+          
+            <a class="nav-link" href="#placement">
+              <strong>Placement</strong>
+              <span>Compare candidates and commit assignment snapshots.</span>
+            </a>
+          
+            <a class="nav-link" href="#attendance">
+              <strong>Attendance</strong>
+              <span>Approve clean rows fast and resolve exceptions inline.</span>
+            </a>
+          
+            <a class="nav-link" href="#billing">
+              <strong>Billing</strong>
+              <span>Invoice handoff queue with trace-back to attendance.</span>
+            </a>
+          
+            <a class="nav-link nav-link-active" href="#site-lead-roster">
+              <strong>Site Lead Roster</strong>
+              <span>Mobile-first day-of roster for attendance, exception, and evidence entry.</span>
+            </a>
+          
+    </nav>
+  
+            </aside>
+            <section class="content" data-route="site-lead-roster">
+              
+    <section class="hero mobile-hero">
+      <div>
+        <p class="eyebrow">Mobile site-lead surface</p>
+        <h1>Site lead mobile roster</h1>
+        <p class="lede">Task-first mobile surface for arrivals, incident capture, and evidence logging.</p>
+      </div>
+      <div class="hero-meta">
+        <span class="pill pill-neutral">2026-04-11</span>
+        <span class="pill pill-accent">Seoul East Mall</span>
+      </div>
+    </section>
+    <section class="metric-grid mobile-metric-grid">
+      <article class="metric-card metric-warning">
+        <span class="metric-label">Pending sync</span>
+        <strong>1</strong>
+        <p>Queued mobile submissions still waiting on a stable network path.</p>
+      </article>
+      <article class="metric-card metric-danger">
+        <span class="metric-label">Upload retry</span>
+        <strong>1</strong>
+        <p>Evidence uploads that must resume without losing the selected roster record.</p>
+      </article>
+      <article class="metric-card metric-accent">
+        <span class="metric-label">Duplicate guard</span>
+        <strong>1</strong>
+        <p>Repeat taps blocked by a reused submit token instead of creating extra attendance rows.</p>
+      </article>
+    </section>
+    <article class="panel mobile-panel">
+      <header class="panel-header">
+        <h2>Seoul East Mall</h2>
+        <span>On-site lead / Ara Jeong</span>
+      </header>
+      <div class="mobile-roster">
+        
+              <article class="roster-card">
+                <div class="candidate-head">
+                  <strong>Jiyoon Park</strong>
+                  <span class="pill pill-success">Arrived</span>
+                </div>
+                <p>Merchandising crew · 10:00-19:00</p>
+                <p class="muted">No exception</p>
+                <div class="pill-row">
+                  <span class="pill pill-accent">attendance</span><span class="pill pill-accent">exception</span><span class="pill pill-accent">evidence</span>
+                </div>
+                <div class="recovery-grid">
+                  <section class="recovery-card">
+                    <div class="candidate-head">
+                      <strong>Attendance submit</strong>
+                      <span class="pill pill-success">Synced</span>
+                    </div>
+                    <p class="muted">Check-in posted on the first attempt and already matches the desktop attendance queue.</p>
+                  </section>
+                  <section class="recovery-card">
+                    <div class="candidate-head">
+                      <strong>Evidence upload</strong>
+                      <span class="pill pill-success">Uploaded</span>
+                    </div>
+                    <p class="muted">Gate-arrival photo attached on the first upload and linked to the same attendance record.</p>
+                  </section>
+                </div>
+                <ul class="recovery-meta">
+                  <li>Attendance ID: att-mobile-roster-1</li>
+                  <li>Submit token: site-lead:roster-1:2026-04-11:check-in</li>
+                  <li>Upload ID: upload-roster-1</li>
+                  <li>Selected context: Attendance and evidence stay anchored to Jiyoon Park while the site lead moves between drawers.</li>
+                  
+                  <li>Desktop convergence: Desktop queue shows arrival confirmed with no exception state.</li>
+                </ul>
+              </article>
+            
+              <article class="roster-card">
+                <div class="candidate-head">
+                  <strong>Minsu Lee</strong>
+                  <span class="pill pill-neutral">Expected</span>
+                </div>
+                <p>Merchandising crew · 10:00-19:00</p>
+                <p class="muted">Medical clearance check at gate</p>
+                <div class="pill-row">
+                  <span class="pill pill-accent">attendance</span><span class="pill pill-accent">exception</span><span class="pill pill-accent">evidence</span>
+                </div>
+                <div class="recovery-grid">
+                  <section class="recovery-card">
+                    <div class="candidate-head">
+                      <strong>Attendance submit</strong>
+                      <span class="pill pill-warning">Pending sync</span>
+                    </div>
+                    <p class="muted">Check-in was saved locally after connectivity dropped. Retry will reuse the queued submit token instead of posting a second row.</p>
+                  </section>
+                  <section class="recovery-card">
+                    <div class="candidate-head">
+                      <strong>Evidence upload</strong>
+                      <span class="pill pill-warning">Pending upload</span>
+                    </div>
+                    <p class="muted">The medical-clearance gate photo stays attached to the same queued record until the submit finishes.</p>
+                  </section>
+                </div>
+                <ul class="recovery-meta">
+                  <li>Attendance ID: att-mobile-pending-1</li>
+                  <li>Submit token: site-lead:roster-2:2026-04-11:check-in</li>
+                  <li>Upload ID: upload-roster-2</li>
+                  <li>Selected context: Selected record remains Minsu Lee / medical-clearance check even after the failed submit.</li>
+                  <li>Duplicate guard: Second tap at 09:59 reused the same submit token, so no duplicate attendance submission was created.</li>
+                  <li>Desktop convergence: When connectivity resumes, the same attendance record moves into desktop site review instead of creating a duplicate row.</li>
+                </ul>
+              </article>
+            
+              <article class="roster-card">
+                <div class="candidate-head">
+                  <strong>Haeun Choi</strong>
+                  <span class="pill pill-danger">Late risk</span>
+                </div>
+                <p>Standby replacement · 12:00-19:00</p>
+                <p class="muted">Transit delay reported by phone</p>
+                <div class="pill-row">
+                  <span class="pill pill-accent">attendance</span><span class="pill pill-accent">exception</span><span class="pill pill-accent">evidence</span>
+                </div>
+                <div class="recovery-grid">
+                  <section class="recovery-card">
+                    <div class="candidate-head">
+                      <strong>Attendance submit</strong>
+                      <span class="pill pill-accent">Synced</span>
+                    </div>
+                    <p class="muted">Delay exception draft is already posted, but the supporting photo still needs a successful upload retry.</p>
+                  </section>
+                  <section class="recovery-card">
+                    <div class="candidate-head">
+                      <strong>Evidence upload</strong>
+                      <span class="pill pill-danger">Retry required</span>
+                    </div>
+                    <p class="muted">Transit-photo upload failed on unstable 3G. Retry keeps the exception drawer on the same roster row after reload.</p>
+                  </section>
+                </div>
+                <ul class="recovery-meta">
+                  <li>Attendance ID: att-mobile-evidence-1</li>
+                  <li>Submit token: site-lead:roster-3:2026-04-11:delay-note</li>
+                  <li>Upload ID: upload-roster-3</li>
+                  <li>Selected context: The site lead returns to Haeun Choi / transit delay with the same pending image attached.</li>
+                  
+                  <li>Desktop convergence: Desktop queue keeps the row in evidence-missing review until the upload retry succeeds.</li>
+                </ul>
+              </article>
+            
+      </div>
+    </article>
+  
+            </section>
+          </div>
+        </main>
+      </body>
+    </html>
+  

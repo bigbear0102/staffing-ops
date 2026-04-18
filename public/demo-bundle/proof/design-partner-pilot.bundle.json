@@ -1,0 +1,2206 @@
+{
+  "fixtureId": "design-partner-pilot-v1",
+  "environmentName": "pilot-reviewable-proof",
+  "timezone": "Asia/Seoul",
+  "operatorRolesUsed": [
+    "admin",
+    "operations_operator",
+    "operations_manager",
+    "finance_admin",
+    "site_lead"
+  ],
+  "order": {
+    "draft": {
+      "id": "order-cold-chain-pilot-1",
+      "organizationId": "org-design-partner-1",
+      "clientAccountId": "client-design-partner-1",
+      "siteId": "site-gimpo-cold-chain-1",
+      "roleCode": "cold-chain-picker",
+      "headcountRequired": 2,
+      "requiredQualifications": [
+        "forklift",
+        "cold-chain-check"
+      ],
+      "slotsFilled": 0,
+      "startDate": "2026-04-03",
+      "endDate": "2026-04-30",
+      "shiftPattern": "weekday-day",
+      "billRateKrw": 19000,
+      "overtimeRuleCode": "kr-standard-meal-after-8h",
+      "status": "draft",
+      "createdAt": "2026-04-01T09:00:00+09:00",
+      "updatedAt": "2026-04-01T09:00:00+09:00"
+    },
+    "published": {
+      "id": "order-cold-chain-pilot-1",
+      "organizationId": "org-design-partner-1",
+      "clientAccountId": "client-design-partner-1",
+      "siteId": "site-gimpo-cold-chain-1",
+      "roleCode": "cold-chain-picker",
+      "headcountRequired": 2,
+      "requiredQualifications": [
+        "forklift",
+        "cold-chain-check"
+      ],
+      "slotsFilled": 0,
+      "startDate": "2026-04-03",
+      "endDate": "2026-04-30",
+      "shiftPattern": "weekday-day",
+      "billRateKrw": 19000,
+      "overtimeRuleCode": "kr-standard-meal-after-8h",
+      "status": "open",
+      "createdAt": "2026-04-01T09:00:00+09:00",
+      "updatedAt": "2026-04-01T09:30:00+09:00"
+    },
+    "publishAuditEvent": {
+      "id": "audit-order-published-pilot-1",
+      "organizationId": "org-design-partner-1",
+      "module": "order_intake",
+      "entityType": "order",
+      "entityId": "order-cold-chain-pilot-1",
+      "actorUserId": "ops-commercial-1",
+      "action": "order.published",
+      "occurredAt": "2026-04-01T09:30:00+09:00",
+      "payload": {
+        "before": {
+          "status": "draft",
+          "slotsFilled": 0
+        },
+        "after": {
+          "status": "open",
+          "slotsFilled": 0
+        },
+        "requiredQualifications": [
+          "forklift",
+          "cold-chain-check"
+        ]
+      }
+    }
+  },
+  "assignments": {
+    "readyPath": {
+      "order": {
+        "id": "order-cold-chain-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "clientAccountId": "client-design-partner-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "roleCode": "cold-chain-picker",
+        "headcountRequired": 2,
+        "requiredQualifications": [
+          "forklift",
+          "cold-chain-check"
+        ],
+        "slotsFilled": 1,
+        "startDate": "2026-04-03",
+        "endDate": "2026-04-30",
+        "shiftPattern": "weekday-day",
+        "billRateKrw": 19000,
+        "overtimeRuleCode": "kr-standard-meal-after-8h",
+        "status": "partially_filled",
+        "createdAt": "2026-04-01T09:00:00+09:00",
+        "updatedAt": "2026-04-02T09:00:00+09:00"
+      },
+      "assignment": {
+        "id": "assignment-cold-chain-ready-1",
+        "organizationId": "org-design-partner-1",
+        "clientAccountId": "client-design-partner-1",
+        "orderId": "order-cold-chain-pilot-1",
+        "workerId": "worker-ready-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "plannedStartDate": "2026-04-03",
+        "plannedEndDate": "2026-04-30",
+        "sourceChannel": "operator_console",
+        "status": "confirmed",
+        "snapshot": {
+          "snapshotVersion": 1,
+          "id": "assignment-cold-chain-ready-1",
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-ready-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "payRateKrw": 14000,
+          "billRateKrw": 19000,
+          "shiftPattern": "weekday-day",
+          "effectiveDate": "2026-04-03",
+          "serviceType": "dispatch",
+          "plannedStartDate": "2026-04-03",
+          "plannedEndDate": "2026-04-30",
+          "sourceChannel": "operator_console",
+          "createdAt": "2026-04-02T09:00:00+09:00"
+        },
+        "createdAt": "2026-04-02T09:00:00+09:00",
+        "updatedAt": "2026-04-02T09:00:00+09:00"
+      },
+      "eligibility": {
+        "eligible": true,
+        "overrideRequired": false,
+        "requiredQualifications": [
+          "forklift",
+          "cold-chain-check"
+        ],
+        "missingQualifications": [],
+        "documentReadiness": "ready",
+        "availabilityStatus": "available",
+        "blockers": []
+      },
+      "auditEvent": {
+        "id": "audit-assignment-ready-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "module": "placement",
+        "entityType": "assignment",
+        "entityId": "assignment-cold-chain-ready-1",
+        "actorUserId": "ops-placement-1",
+        "action": "assignment.committed",
+        "occurredAt": "2026-04-02T09:00:00+09:00",
+        "payload": {
+          "before": {
+            "orderStatus": "open",
+            "slotsFilled": 0
+          },
+          "after": {
+            "orderStatus": "partially_filled",
+            "slotsFilled": 1
+          },
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-ready-1",
+          "overrideReason": null,
+          "blockers": []
+        }
+      }
+    },
+    "overridePath": {
+      "order": {
+        "id": "order-cold-chain-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "clientAccountId": "client-design-partner-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "roleCode": "cold-chain-picker",
+        "headcountRequired": 2,
+        "requiredQualifications": [
+          "forklift",
+          "cold-chain-check"
+        ],
+        "slotsFilled": 2,
+        "startDate": "2026-04-03",
+        "endDate": "2026-04-30",
+        "shiftPattern": "weekday-day",
+        "billRateKrw": 19000,
+        "overtimeRuleCode": "kr-standard-meal-after-8h",
+        "status": "filled",
+        "createdAt": "2026-04-01T09:00:00+09:00",
+        "updatedAt": "2026-04-02T09:15:00+09:00"
+      },
+      "assignment": {
+        "id": "assignment-cold-chain-override-1",
+        "organizationId": "org-design-partner-1",
+        "clientAccountId": "client-design-partner-1",
+        "orderId": "order-cold-chain-pilot-1",
+        "workerId": "worker-override-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "plannedStartDate": "2026-04-03",
+        "plannedEndDate": "2026-04-30",
+        "sourceChannel": "operator_console",
+        "status": "confirmed",
+        "snapshot": {
+          "snapshotVersion": 1,
+          "id": "assignment-cold-chain-override-1",
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-override-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "payRateKrw": 14500,
+          "billRateKrw": 19000,
+          "shiftPattern": "weekday-day",
+          "effectiveDate": "2026-04-03",
+          "serviceType": "dispatch",
+          "plannedStartDate": "2026-04-03",
+          "plannedEndDate": "2026-04-30",
+          "sourceChannel": "operator_console",
+          "createdAt": "2026-04-02T09:15:00+09:00"
+        },
+        "createdAt": "2026-04-02T09:15:00+09:00",
+        "updatedAt": "2026-04-02T09:15:00+09:00"
+      },
+      "eligibility": {
+        "eligible": false,
+        "overrideRequired": true,
+        "requiredQualifications": [
+          "forklift",
+          "cold-chain-check"
+        ],
+        "missingQualifications": [],
+        "documentReadiness": "missing",
+        "availabilityStatus": "unavailable",
+        "recentAssignmentConflict": "Previous site released the worker late; first-shift deployment required explicit pilot override.",
+        "blockers": [
+          {
+            "code": "document_not_ready",
+            "detail": "Worker document readiness is missing."
+          },
+          {
+            "code": "worker_unavailable",
+            "detail": "Worker availability is unavailable."
+          },
+          {
+            "code": "recent_assignment_conflict",
+            "detail": "Previous site released the worker late; first-shift deployment required explicit pilot override."
+          }
+        ]
+      },
+      "auditEvent": {
+        "id": "audit-assignment-override-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "module": "placement",
+        "entityType": "assignment",
+        "entityId": "assignment-cold-chain-override-1",
+        "actorUserId": "ops-admin-1",
+        "action": "assignment.committed",
+        "occurredAt": "2026-04-02T09:15:00+09:00",
+        "payload": {
+          "before": {
+            "orderStatus": "partially_filled",
+            "slotsFilled": 1
+          },
+          "after": {
+            "orderStatus": "filled",
+            "slotsFilled": 2
+          },
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-override-1",
+          "overrideReason": "Operations manager approved temporary deployment while missing compliance evidence is collected.",
+          "blockers": [
+            {
+              "code": "document_not_ready",
+              "detail": "Worker document readiness is missing."
+            },
+            {
+              "code": "worker_unavailable",
+              "detail": "Worker availability is unavailable."
+            },
+            {
+              "code": "recent_assignment_conflict",
+              "detail": "Previous site released the worker late; first-shift deployment required explicit pilot override."
+            }
+          ]
+        }
+      },
+      "authorizationAuditEvent": {
+        "id": "audit-assignment-override-auth-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "module": "placement",
+        "entityType": "assignment",
+        "entityId": "assignment-cold-chain-override-1",
+        "actorUserId": "ops-admin-1",
+        "action": "placement.override_authorized",
+        "occurredAt": "2026-04-02T09:15:00+09:00",
+        "payload": {
+          "roleBoundaryAction": "placement_override",
+          "decision": "authorized",
+          "actorRole": "admin",
+          "allowedRoles": [
+            "admin",
+            "operations_manager"
+          ],
+          "context": {
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-override-1",
+            "overrideReason": "Operations manager approved temporary deployment while missing compliance evidence is collected.",
+            "blockers": [
+              {
+                "code": "document_not_ready",
+                "detail": "Worker document readiness is missing."
+              },
+              {
+                "code": "worker_unavailable",
+                "detail": "Worker availability is unavailable."
+              },
+              {
+                "code": "recent_assignment_conflict",
+                "detail": "Previous site released the worker late; first-shift deployment required explicit pilot override."
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "attendance": {
+    "cleanApproved": {
+      "attendance": {
+        "id": "attendance-clean-approved-1",
+        "organizationId": "org-design-partner-1",
+        "assignmentId": "assignment-cold-chain-ready-1",
+        "workDate": "2026-04-03",
+        "scheduledStartAt": "2026-04-03T09:00:00+09:00",
+        "scheduledEndAt": "2026-04-03T18:00:00+09:00",
+        "actualStartAt": "2026-04-03T09:00:00+09:00",
+        "actualEndAt": "2026-04-03T18:15:00+09:00",
+        "breakMinutes": 60,
+        "overtimeMinutes": 15,
+        "status": "approved",
+        "source": "site_lead_mobile",
+        "createdAt": "2026-04-03T18:00:00+09:00",
+        "updatedAt": "2026-04-03T18:35:00+09:00",
+        "approvedAt": "2026-04-03T18:35:00+09:00",
+        "approvedByUserId": "ops-manager-1"
+      },
+      "submission": {
+        "attendance": {
+          "id": "attendance-clean-approved-1",
+          "organizationId": "org-design-partner-1",
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "workDate": "2026-04-03",
+          "scheduledStartAt": "2026-04-03T09:00:00+09:00",
+          "scheduledEndAt": "2026-04-03T18:00:00+09:00",
+          "actualStartAt": "2026-04-03T09:00:00+09:00",
+          "actualEndAt": "2026-04-03T18:15:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 15,
+          "status": "submitted",
+          "source": "site_lead_mobile",
+          "createdAt": "2026-04-03T18:00:00+09:00",
+          "updatedAt": "2026-04-03T18:20:00+09:00"
+        },
+        "auditEvent": {
+          "id": "audit-attendance-submit-clean-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-clean-approved-1",
+          "actorUserId": "site-lead-1",
+          "action": "attendance.submitted",
+          "occurredAt": "2026-04-03T18:20:00+09:00",
+          "payload": {
+            "workDate": "2026-04-03",
+            "source": "site_lead_mobile",
+            "actualStartAt": "2026-04-03T09:00:00+09:00",
+            "actualEndAt": "2026-04-03T18:15:00+09:00",
+            "breakMinutes": 60,
+            "overtimeMinutes": 15
+          }
+        }
+      },
+      "approval": {
+        "attendance": {
+          "id": "attendance-clean-approved-1",
+          "organizationId": "org-design-partner-1",
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "workDate": "2026-04-03",
+          "scheduledStartAt": "2026-04-03T09:00:00+09:00",
+          "scheduledEndAt": "2026-04-03T18:00:00+09:00",
+          "actualStartAt": "2026-04-03T09:00:00+09:00",
+          "actualEndAt": "2026-04-03T18:15:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 15,
+          "status": "approved",
+          "source": "site_lead_mobile",
+          "createdAt": "2026-04-03T18:00:00+09:00",
+          "updatedAt": "2026-04-03T18:35:00+09:00",
+          "approvedAt": "2026-04-03T18:35:00+09:00",
+          "approvedByUserId": "ops-manager-1"
+        },
+        "auditEvent": {
+          "id": "audit-attendance-approve-clean-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-clean-approved-1",
+          "actorUserId": "ops-manager-1",
+          "action": "attendance.approved",
+          "occurredAt": "2026-04-03T18:35:00+09:00",
+          "payload": {
+            "assignmentId": "assignment-cold-chain-ready-1",
+            "previousStatus": "submitted",
+            "workDate": "2026-04-03",
+            "billingPeriodStart": "2026-04-01",
+            "billingPeriodEnd": "2026-04-30"
+          }
+        },
+        "invoiceDraftRequest": {
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "workerId": "worker-ready-1",
+          "sourceAssignmentId": "assignment-cold-chain-ready-1",
+          "sourceAttendanceId": "attendance-clean-approved-1",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "billRateKrw": 19000,
+          "requestedAt": "2026-04-03T18:35:00+09:00"
+        }
+      },
+      "invoiceDraftRequest": {
+        "organizationId": "org-design-partner-1",
+        "clientAccountId": "client-design-partner-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "workerId": "worker-ready-1",
+        "sourceAssignmentId": "assignment-cold-chain-ready-1",
+        "sourceAttendanceId": "attendance-clean-approved-1",
+        "billingPeriodStart": "2026-04-01",
+        "billingPeriodEnd": "2026-04-30",
+        "billRateKrw": 19000,
+        "requestedAt": "2026-04-03T18:35:00+09:00"
+      },
+      "invoiceOutboxJob": {
+        "id": "job-invoice-clean-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "topic": "billing.invoice_draft.requested",
+        "status": "pending",
+        "dedupeKey": "invoice-draft:attendance-clean-approved-1",
+        "payload": {
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "workerId": "worker-ready-1",
+          "sourceAssignmentId": "assignment-cold-chain-ready-1",
+          "sourceAttendanceId": "attendance-clean-approved-1",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "billRateKrw": 19000,
+          "requestedAt": "2026-04-03T18:35:00+09:00"
+        },
+        "scheduledAt": "2026-04-03T18:35:00+09:00",
+        "attempts": 0,
+        "maxAttempts": 10,
+        "createdAt": "2026-04-03T18:35:00+09:00",
+        "updatedAt": "2026-04-03T18:35:00+09:00"
+      }
+    },
+    "correctedReapproved": {
+      "attendance": {
+        "id": "attendance-corrected-approved-1",
+        "organizationId": "org-design-partner-1",
+        "assignmentId": "assignment-cold-chain-override-1",
+        "workDate": "2026-04-04",
+        "scheduledStartAt": "2026-04-04T09:00:00+09:00",
+        "scheduledEndAt": "2026-04-04T18:00:00+09:00",
+        "actualStartAt": "2026-04-04T08:58:00+09:00",
+        "actualEndAt": "2026-04-04T18:42:00+09:00",
+        "breakMinutes": 60,
+        "overtimeMinutes": 42,
+        "status": "approved",
+        "source": "site_lead_mobile",
+        "createdAt": "2026-04-04T18:00:00+09:00",
+        "updatedAt": "2026-04-05T09:15:00+09:00",
+        "approvedAt": "2026-04-05T09:15:00+09:00",
+        "approvedByUserId": "ops-manager-1"
+      },
+      "submission": {
+        "attendance": {
+          "id": "attendance-corrected-approved-1",
+          "organizationId": "org-design-partner-1",
+          "assignmentId": "assignment-cold-chain-override-1",
+          "workDate": "2026-04-04",
+          "scheduledStartAt": "2026-04-04T09:00:00+09:00",
+          "scheduledEndAt": "2026-04-04T18:00:00+09:00",
+          "actualStartAt": "2026-04-04T08:58:00+09:00",
+          "actualEndAt": "2026-04-04T18:05:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 5,
+          "status": "submitted",
+          "source": "site_lead_mobile",
+          "createdAt": "2026-04-04T18:00:00+09:00",
+          "updatedAt": "2026-04-04T18:08:00+09:00"
+        },
+        "auditEvent": {
+          "id": "audit-attendance-submit-corrected-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-corrected-approved-1",
+          "actorUserId": "site-lead-1",
+          "action": "attendance.submitted",
+          "occurredAt": "2026-04-04T18:08:00+09:00",
+          "payload": {
+            "workDate": "2026-04-04",
+            "source": "site_lead_mobile",
+            "actualStartAt": "2026-04-04T08:58:00+09:00",
+            "actualEndAt": "2026-04-04T18:05:00+09:00",
+            "breakMinutes": 60,
+            "overtimeMinutes": 5
+          }
+        }
+      },
+      "initialApproval": {
+        "attendance": {
+          "id": "attendance-corrected-approved-1",
+          "organizationId": "org-design-partner-1",
+          "assignmentId": "assignment-cold-chain-override-1",
+          "workDate": "2026-04-04",
+          "scheduledStartAt": "2026-04-04T09:00:00+09:00",
+          "scheduledEndAt": "2026-04-04T18:00:00+09:00",
+          "actualStartAt": "2026-04-04T08:58:00+09:00",
+          "actualEndAt": "2026-04-04T18:05:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 5,
+          "status": "approved",
+          "source": "site_lead_mobile",
+          "createdAt": "2026-04-04T18:00:00+09:00",
+          "updatedAt": "2026-04-04T18:25:00+09:00",
+          "approvedAt": "2026-04-04T18:25:00+09:00",
+          "approvedByUserId": "ops-manager-1"
+        },
+        "auditEvent": {
+          "id": "audit-attendance-approve-before-correction-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-corrected-approved-1",
+          "actorUserId": "ops-manager-1",
+          "action": "attendance.approved",
+          "occurredAt": "2026-04-04T18:25:00+09:00",
+          "payload": {
+            "assignmentId": "assignment-cold-chain-override-1",
+            "previousStatus": "submitted",
+            "workDate": "2026-04-04",
+            "billingPeriodStart": "2026-04-01",
+            "billingPeriodEnd": "2026-04-30"
+          }
+        },
+        "invoiceDraftRequest": {
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "workerId": "worker-override-1",
+          "sourceAssignmentId": "assignment-cold-chain-override-1",
+          "sourceAttendanceId": "attendance-corrected-approved-1",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "billRateKrw": 19000,
+          "requestedAt": "2026-04-04T18:25:00+09:00"
+        }
+      },
+      "initialInvoiceOutboxJob": {
+        "id": "job-invoice-corrected-initial-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "topic": "billing.invoice_draft.requested",
+        "status": "pending",
+        "dedupeKey": "invoice-draft:attendance-corrected-approved-1",
+        "payload": {
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "workerId": "worker-override-1",
+          "sourceAssignmentId": "assignment-cold-chain-override-1",
+          "sourceAttendanceId": "attendance-corrected-approved-1",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "billRateKrw": 19000,
+          "requestedAt": "2026-04-04T18:25:00+09:00"
+        },
+        "scheduledAt": "2026-04-04T18:25:00+09:00",
+        "attempts": 0,
+        "maxAttempts": 10,
+        "createdAt": "2026-04-04T18:25:00+09:00",
+        "updatedAt": "2026-04-04T18:25:00+09:00"
+      },
+      "correction": {
+        "attendance": {
+          "id": "attendance-corrected-approved-1",
+          "organizationId": "org-design-partner-1",
+          "assignmentId": "assignment-cold-chain-override-1",
+          "workDate": "2026-04-04",
+          "scheduledStartAt": "2026-04-04T09:00:00+09:00",
+          "scheduledEndAt": "2026-04-04T18:00:00+09:00",
+          "actualStartAt": "2026-04-04T08:58:00+09:00",
+          "actualEndAt": "2026-04-04T18:42:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 42,
+          "status": "corrected",
+          "source": "site_lead_mobile",
+          "createdAt": "2026-04-04T18:00:00+09:00",
+          "updatedAt": "2026-04-05T09:00:00+09:00"
+        },
+        "auditEvent": {
+          "id": "audit-attendance-corrected-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-corrected-approved-1",
+          "actorUserId": "ops-attendance-2",
+          "action": "attendance.corrected",
+          "occurredAt": "2026-04-05T09:00:00+09:00",
+          "payload": {
+            "correctionReason": "Driver log and freezer-gate evidence confirmed additional overtime minutes.",
+            "before": {
+              "status": "approved",
+              "actualStartAt": "2026-04-04T08:58:00+09:00",
+              "actualEndAt": "2026-04-04T18:05:00+09:00",
+              "breakMinutes": 60,
+              "overtimeMinutes": 5,
+              "exceptionCode": null,
+              "approvedAt": "2026-04-04T18:25:00+09:00",
+              "approvedByUserId": "ops-manager-1"
+            },
+            "after": {
+              "status": "corrected",
+              "actualStartAt": "2026-04-04T08:58:00+09:00",
+              "actualEndAt": "2026-04-04T18:42:00+09:00",
+              "breakMinutes": 60,
+              "overtimeMinutes": 42,
+              "exceptionCode": null,
+              "approvedAt": null,
+              "approvedByUserId": null
+            }
+          }
+        },
+        "authorizationAuditEvent": {
+          "id": "audit-attendance-corrected-auth-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-corrected-approved-1",
+          "actorUserId": "ops-attendance-2",
+          "action": "attendance.correction_authorized",
+          "occurredAt": "2026-04-05T09:00:00+09:00",
+          "payload": {
+            "roleBoundaryAction": "attendance_correction",
+            "decision": "authorized",
+            "actorRole": "operations_operator",
+            "allowedRoles": [
+              "admin",
+              "operations_manager",
+              "operations_operator"
+            ],
+            "context": {
+              "assignmentId": "assignment-cold-chain-override-1",
+              "previousStatus": "approved",
+              "correctionReason": "Driver log and freezer-gate evidence confirmed additional overtime minutes."
+            }
+          }
+        }
+      },
+      "reapproval": {
+        "attendance": {
+          "id": "attendance-corrected-approved-1",
+          "organizationId": "org-design-partner-1",
+          "assignmentId": "assignment-cold-chain-override-1",
+          "workDate": "2026-04-04",
+          "scheduledStartAt": "2026-04-04T09:00:00+09:00",
+          "scheduledEndAt": "2026-04-04T18:00:00+09:00",
+          "actualStartAt": "2026-04-04T08:58:00+09:00",
+          "actualEndAt": "2026-04-04T18:42:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 42,
+          "status": "approved",
+          "source": "site_lead_mobile",
+          "createdAt": "2026-04-04T18:00:00+09:00",
+          "updatedAt": "2026-04-05T09:15:00+09:00",
+          "approvedAt": "2026-04-05T09:15:00+09:00",
+          "approvedByUserId": "ops-manager-1"
+        },
+        "auditEvent": {
+          "id": "audit-attendance-reapproved-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-corrected-approved-1",
+          "actorUserId": "ops-manager-1",
+          "action": "attendance.approved",
+          "occurredAt": "2026-04-05T09:15:00+09:00",
+          "payload": {
+            "assignmentId": "assignment-cold-chain-override-1",
+            "previousStatus": "corrected",
+            "workDate": "2026-04-04",
+            "billingPeriodStart": "2026-04-01",
+            "billingPeriodEnd": "2026-04-30"
+          }
+        },
+        "invoiceDraftRequest": {
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "workerId": "worker-override-1",
+          "sourceAssignmentId": "assignment-cold-chain-override-1",
+          "sourceAttendanceId": "attendance-corrected-approved-1",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "billRateKrw": 19000,
+          "requestedAt": "2026-04-05T09:15:00+09:00"
+        }
+      },
+      "reapprovalInvoiceOutboxJob": {
+        "id": "job-invoice-corrected-reapproved-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "topic": "billing.invoice_draft.requested",
+        "status": "pending",
+        "dedupeKey": "invoice-draft:attendance-corrected-approved-1",
+        "payload": {
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "workerId": "worker-override-1",
+          "sourceAssignmentId": "assignment-cold-chain-override-1",
+          "sourceAttendanceId": "attendance-corrected-approved-1",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "billRateKrw": 19000,
+          "requestedAt": "2026-04-05T09:15:00+09:00"
+        },
+        "scheduledAt": "2026-04-05T09:15:00+09:00",
+        "attempts": 0,
+        "maxAttempts": 10,
+        "createdAt": "2026-04-05T09:15:00+09:00",
+        "updatedAt": "2026-04-05T09:15:00+09:00"
+      }
+    },
+    "blockedUnapproved": {
+      "attendance": {
+        "id": "attendance-blocked-unapproved-1",
+        "organizationId": "org-design-partner-1",
+        "assignmentId": "assignment-cold-chain-override-1",
+        "workDate": "2026-04-05",
+        "scheduledStartAt": "2026-04-05T09:00:00+09:00",
+        "scheduledEndAt": "2026-04-05T18:00:00+09:00",
+        "actualStartAt": "2026-04-05T09:03:00+09:00",
+        "actualEndAt": "2026-04-05T18:01:00+09:00",
+        "breakMinutes": 60,
+        "overtimeMinutes": 1,
+        "status": "submitted",
+        "source": "site_lead_mobile",
+        "exceptionCode": "site_signoff_missing",
+        "createdAt": "2026-04-05T18:00:00+09:00",
+        "updatedAt": "2026-04-05T18:10:00+09:00"
+      },
+      "submission": {
+        "attendance": {
+          "id": "attendance-blocked-unapproved-1",
+          "organizationId": "org-design-partner-1",
+          "assignmentId": "assignment-cold-chain-override-1",
+          "workDate": "2026-04-05",
+          "scheduledStartAt": "2026-04-05T09:00:00+09:00",
+          "scheduledEndAt": "2026-04-05T18:00:00+09:00",
+          "actualStartAt": "2026-04-05T09:03:00+09:00",
+          "actualEndAt": "2026-04-05T18:01:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 1,
+          "status": "submitted",
+          "source": "site_lead_mobile",
+          "exceptionCode": "site_signoff_missing",
+          "createdAt": "2026-04-05T18:00:00+09:00",
+          "updatedAt": "2026-04-05T18:10:00+09:00"
+        },
+        "auditEvent": {
+          "id": "audit-attendance-submit-blocked-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-blocked-unapproved-1",
+          "actorUserId": "site-lead-1",
+          "action": "attendance.submitted",
+          "occurredAt": "2026-04-05T18:10:00+09:00",
+          "payload": {
+            "workDate": "2026-04-05",
+            "source": "site_lead_mobile",
+            "actualStartAt": "2026-04-05T09:03:00+09:00",
+            "actualEndAt": "2026-04-05T18:01:00+09:00",
+            "breakMinutes": 60,
+            "overtimeMinutes": 1
+          }
+        }
+      },
+      "blockerReason": "Site lead evidence was missing at cutoff, so the row stays out of billing handoff."
+    }
+  },
+  "mobileRecovery": {
+    "rosterShiftId": "roster-mobile-pilot-1",
+    "pendingAttendanceId": "attendance-blocked-unapproved-1",
+    "selectedRecordId": "attendance-blocked-unapproved-1",
+    "submissionDedupeKey": "site-lead-mobile:attendance-blocked-unapproved-1:submit",
+    "firstAttempt": {
+      "networkState": "offline_after_submit",
+      "queueStatus": "pending_sync",
+      "capturedAt": "2026-04-05T18:10:00+09:00",
+      "note": "The site lead kept the captured attendance locally after the network dropped during submit."
+    },
+    "duplicateSubmissionGuard": {
+      "secondTapAt": "2026-04-05T18:12:00+09:00",
+      "dedupeKey": "site-lead-mobile:attendance-blocked-unapproved-1:submit",
+      "attemptedAttendanceIds": [
+        "attendance-blocked-unapproved-1",
+        "attendance-blocked-unapproved-1"
+      ],
+      "resultingAttendanceIds": [
+        "attendance-blocked-unapproved-1"
+      ],
+      "duplicatePrevented": true,
+      "operatorMessage": "Retry reused the pending submit token, so the roster stayed on one attendance record instead of creating a duplicate."
+    },
+    "evidenceUploadRecovery": {
+      "uploadId": "evidence-upload:attendance-blocked-unapproved-1:gate-photo",
+      "fileName": "gate-clearance-photo.jpg",
+      "firstAttemptAt": "2026-04-05T18:13:00+09:00",
+      "firstAttemptStatus": "failed",
+      "retryAt": "2026-04-05T18:19:00+09:00",
+      "retryStatus": "completed",
+      "preservedRosterShiftId": "roster-mobile-pilot-1",
+      "preservedSelectedRecordId": "attendance-blocked-unapproved-1",
+      "note": "The evidence retry resumed on the same selected roster record after reload, preserving the operator's context."
+    },
+    "desktopConvergence": {
+      "attendanceId": "attendance-blocked-unapproved-1",
+      "attendanceStatus": "submitted",
+      "excludedFromExportBatch": true,
+      "exportSourceAttendanceIds": [
+        "attendance-clean-approved-1",
+        "attendance-corrected-approved-1"
+      ],
+      "note": "Once connectivity resumed, desktop review showed the same submitted attendance row still blocked out of finance handoff until site evidence cleared."
+    }
+  },
+  "billing": {
+    "exportArtifact": {
+      "exportBatchId": "billing-handoff-batch-pilot-1",
+      "organizationId": "org-design-partner-1",
+      "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+      "clientAccountId": "client-design-partner-1",
+      "siteId": "site-gimpo-cold-chain-1",
+      "billingPeriodStart": "2026-04-01",
+      "billingPeriodEnd": "2026-04-30",
+      "generatedAt": "2026-04-07T09:00:00+09:00",
+      "generatedByUserId": "finance-admin-1",
+      "format": "csv",
+      "columns": [
+        "exportBatchId",
+        "batchKey",
+        "lineNumber",
+        "clientAccountId",
+        "siteId",
+        "orderId",
+        "assignmentId",
+        "workerId",
+        "attendanceId",
+        "workDate",
+        "billingPeriodStart",
+        "billingPeriodEnd",
+        "actualStartAt",
+        "actualEndAt",
+        "breakMinutes",
+        "overtimeMinutes",
+        "billableMinutes",
+        "billableHours",
+        "billRateKrw",
+        "billAmountKrw",
+        "taxTreatmentCode",
+        "attendanceSource",
+        "supportingAttendanceEvidence",
+        "disputeNote",
+        "requestedAt",
+        "generatedAt",
+        "generatedByUserId"
+      ],
+      "rows": [
+        {
+          "exportBatchId": "billing-handoff-batch-pilot-1",
+          "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+          "lineNumber": 1,
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "workerId": "worker-ready-1",
+          "attendanceId": "attendance-clean-approved-1",
+          "workDate": "2026-04-03",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "actualStartAt": "2026-04-03T09:00:00+09:00",
+          "actualEndAt": "2026-04-03T18:15:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 15,
+          "billableMinutes": 495,
+          "billableHours": 8.25,
+          "billRateKrw": 19000,
+          "billAmountKrw": 156750,
+          "taxTreatmentCode": "vatable_standard",
+          "attendanceSource": "site_lead_mobile",
+          "supportingAttendanceEvidence": [
+            "doc://attendance/clean-approved-timesheet.pdf"
+          ],
+          "requestedAt": "2026-04-03T18:35:00+09:00",
+          "generatedAt": "2026-04-07T09:00:00+09:00",
+          "generatedByUserId": "finance-admin-1"
+        },
+        {
+          "exportBatchId": "billing-handoff-batch-pilot-1",
+          "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+          "lineNumber": 2,
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "assignmentId": "assignment-cold-chain-override-1",
+          "workerId": "worker-override-1",
+          "attendanceId": "attendance-corrected-approved-1",
+          "workDate": "2026-04-04",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "actualStartAt": "2026-04-04T08:58:00+09:00",
+          "actualEndAt": "2026-04-04T18:42:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 42,
+          "billableMinutes": 524,
+          "billableHours": 8.73,
+          "billRateKrw": 19000,
+          "billAmountKrw": 165933,
+          "taxTreatmentCode": "vatable_standard",
+          "attendanceSource": "site_lead_mobile",
+          "supportingAttendanceEvidence": [
+            "doc://attendance/corrected-overtime-proof.pdf"
+          ],
+          "disputeNote": "Correction reapplied before finance handoff close.",
+          "requestedAt": "2026-04-05T09:15:00+09:00",
+          "generatedAt": "2026-04-07T09:00:00+09:00",
+          "generatedByUserId": "finance-admin-1"
+        }
+      ],
+      "csvContent": "exportBatchId,batchKey,lineNumber,clientAccountId,siteId,orderId,assignmentId,workerId,attendanceId,workDate,billingPeriodStart,billingPeriodEnd,actualStartAt,actualEndAt,breakMinutes,overtimeMinutes,billableMinutes,billableHours,billRateKrw,billAmountKrw,taxTreatmentCode,attendanceSource,supportingAttendanceEvidence,disputeNote,requestedAt,generatedAt,generatedByUserId\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,1,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-ready-1,worker-ready-1,attendance-clean-approved-1,2026-04-03,2026-04-01,2026-04-30,2026-04-03T09:00:00+09:00,2026-04-03T18:15:00+09:00,60,15,495,8.25,19000,156750,vatable_standard,site_lead_mobile,doc://attendance/clean-approved-timesheet.pdf,,2026-04-03T18:35:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,2,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-override-1,worker-override-1,attendance-corrected-approved-1,2026-04-04,2026-04-01,2026-04-30,2026-04-04T08:58:00+09:00,2026-04-04T18:42:00+09:00,60,42,524,8.73,19000,165933,vatable_standard,site_lead_mobile,doc://attendance/corrected-overtime-proof.pdf,Correction reapplied before finance handoff close.,2026-04-05T09:15:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1",
+      "sourceAttendanceIds": [
+        "attendance-clean-approved-1",
+        "attendance-corrected-approved-1"
+      ],
+      "sourceAssignmentSnapshots": [
+        {
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-ready-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "snapshot": {
+            "snapshotVersion": 1,
+            "id": "assignment-cold-chain-ready-1",
+            "organizationId": "org-design-partner-1",
+            "clientAccountId": "client-design-partner-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-ready-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "payRateKrw": 14000,
+            "billRateKrw": 19000,
+            "shiftPattern": "weekday-day",
+            "effectiveDate": "2026-04-03",
+            "serviceType": "dispatch",
+            "plannedStartDate": "2026-04-03",
+            "plannedEndDate": "2026-04-30",
+            "sourceChannel": "operator_console",
+            "createdAt": "2026-04-02T09:00:00+09:00"
+          }
+        },
+        {
+          "assignmentId": "assignment-cold-chain-override-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-override-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "snapshot": {
+            "snapshotVersion": 1,
+            "id": "assignment-cold-chain-override-1",
+            "organizationId": "org-design-partner-1",
+            "clientAccountId": "client-design-partner-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-override-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "payRateKrw": 14500,
+            "billRateKrw": 19000,
+            "shiftPattern": "weekday-day",
+            "effectiveDate": "2026-04-03",
+            "serviceType": "dispatch",
+            "plannedStartDate": "2026-04-03",
+            "plannedEndDate": "2026-04-30",
+            "sourceChannel": "operator_console",
+            "createdAt": "2026-04-02T09:15:00+09:00"
+          }
+        }
+      ]
+    },
+    "exportAuditEvent": {
+      "id": "audit-export-pilot-1",
+      "organizationId": "org-design-partner-1",
+      "module": "billing",
+      "entityType": "billing_handoff_batch",
+      "entityId": "billing-handoff-batch-pilot-1",
+      "actorUserId": "finance-admin-1",
+      "action": "billing.finance_handoff_exported",
+      "occurredAt": "2026-04-07T09:00:00+09:00",
+      "payload": {
+        "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+        "exportFormat": "csv",
+        "clientAccountId": "client-design-partner-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "billingPeriodStart": "2026-04-01",
+        "billingPeriodEnd": "2026-04-30",
+        "rowCount": 2,
+        "sourceAttendanceIds": [
+          "attendance-clean-approved-1",
+          "attendance-corrected-approved-1"
+        ],
+        "sourceAssignmentIds": [
+          "assignment-cold-chain-ready-1",
+          "assignment-cold-chain-override-1"
+        ]
+      }
+    },
+    "exportOutboxJob": {
+      "id": "job-export-pilot-1",
+      "organizationId": "org-design-partner-1",
+      "topic": "billing.invoice_handoff.exported",
+      "status": "pending",
+      "dedupeKey": "billing-handoff:billing-handoff-batch-pilot-1",
+      "payload": {
+        "exportBatchId": "billing-handoff-batch-pilot-1",
+        "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+        "generatedAt": "2026-04-07T09:00:00+09:00",
+        "generatedByUserId": "finance-admin-1",
+        "format": "csv",
+        "rowCount": 2,
+        "sourceAttendanceIds": [
+          "attendance-clean-approved-1",
+          "attendance-corrected-approved-1"
+        ],
+        "sourceAssignmentSnapshots": [
+          {
+            "assignmentId": "assignment-cold-chain-ready-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-ready-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "snapshot": {
+              "snapshotVersion": 1,
+              "id": "assignment-cold-chain-ready-1",
+              "organizationId": "org-design-partner-1",
+              "clientAccountId": "client-design-partner-1",
+              "orderId": "order-cold-chain-pilot-1",
+              "workerId": "worker-ready-1",
+              "siteId": "site-gimpo-cold-chain-1",
+              "payRateKrw": 14000,
+              "billRateKrw": 19000,
+              "shiftPattern": "weekday-day",
+              "effectiveDate": "2026-04-03",
+              "serviceType": "dispatch",
+              "plannedStartDate": "2026-04-03",
+              "plannedEndDate": "2026-04-30",
+              "sourceChannel": "operator_console",
+              "createdAt": "2026-04-02T09:00:00+09:00"
+            }
+          },
+          {
+            "assignmentId": "assignment-cold-chain-override-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-override-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "snapshot": {
+              "snapshotVersion": 1,
+              "id": "assignment-cold-chain-override-1",
+              "organizationId": "org-design-partner-1",
+              "clientAccountId": "client-design-partner-1",
+              "orderId": "order-cold-chain-pilot-1",
+              "workerId": "worker-override-1",
+              "siteId": "site-gimpo-cold-chain-1",
+              "payRateKrw": 14500,
+              "billRateKrw": 19000,
+              "shiftPattern": "weekday-day",
+              "effectiveDate": "2026-04-03",
+              "serviceType": "dispatch",
+              "plannedStartDate": "2026-04-03",
+              "plannedEndDate": "2026-04-30",
+              "sourceChannel": "operator_console",
+              "createdAt": "2026-04-02T09:15:00+09:00"
+            }
+          }
+        ],
+        "rows": [
+          {
+            "exportBatchId": "billing-handoff-batch-pilot-1",
+            "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+            "lineNumber": 1,
+            "clientAccountId": "client-design-partner-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "assignmentId": "assignment-cold-chain-ready-1",
+            "workerId": "worker-ready-1",
+            "attendanceId": "attendance-clean-approved-1",
+            "workDate": "2026-04-03",
+            "billingPeriodStart": "2026-04-01",
+            "billingPeriodEnd": "2026-04-30",
+            "actualStartAt": "2026-04-03T09:00:00+09:00",
+            "actualEndAt": "2026-04-03T18:15:00+09:00",
+            "breakMinutes": 60,
+            "overtimeMinutes": 15,
+            "billableMinutes": 495,
+            "billableHours": 8.25,
+            "billRateKrw": 19000,
+            "billAmountKrw": 156750,
+            "taxTreatmentCode": "vatable_standard",
+            "attendanceSource": "site_lead_mobile",
+            "supportingAttendanceEvidence": [
+              "doc://attendance/clean-approved-timesheet.pdf"
+            ],
+            "requestedAt": "2026-04-03T18:35:00+09:00",
+            "generatedAt": "2026-04-07T09:00:00+09:00",
+            "generatedByUserId": "finance-admin-1"
+          },
+          {
+            "exportBatchId": "billing-handoff-batch-pilot-1",
+            "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+            "lineNumber": 2,
+            "clientAccountId": "client-design-partner-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "assignmentId": "assignment-cold-chain-override-1",
+            "workerId": "worker-override-1",
+            "attendanceId": "attendance-corrected-approved-1",
+            "workDate": "2026-04-04",
+            "billingPeriodStart": "2026-04-01",
+            "billingPeriodEnd": "2026-04-30",
+            "actualStartAt": "2026-04-04T08:58:00+09:00",
+            "actualEndAt": "2026-04-04T18:42:00+09:00",
+            "breakMinutes": 60,
+            "overtimeMinutes": 42,
+            "billableMinutes": 524,
+            "billableHours": 8.73,
+            "billRateKrw": 19000,
+            "billAmountKrw": 165933,
+            "taxTreatmentCode": "vatable_standard",
+            "attendanceSource": "site_lead_mobile",
+            "supportingAttendanceEvidence": [
+              "doc://attendance/corrected-overtime-proof.pdf"
+            ],
+            "disputeNote": "Correction reapplied before finance handoff close.",
+            "requestedAt": "2026-04-05T09:15:00+09:00",
+            "generatedAt": "2026-04-07T09:00:00+09:00",
+            "generatedByUserId": "finance-admin-1"
+          }
+        ],
+        "csvContent": "exportBatchId,batchKey,lineNumber,clientAccountId,siteId,orderId,assignmentId,workerId,attendanceId,workDate,billingPeriodStart,billingPeriodEnd,actualStartAt,actualEndAt,breakMinutes,overtimeMinutes,billableMinutes,billableHours,billRateKrw,billAmountKrw,taxTreatmentCode,attendanceSource,supportingAttendanceEvidence,disputeNote,requestedAt,generatedAt,generatedByUserId\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,1,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-ready-1,worker-ready-1,attendance-clean-approved-1,2026-04-03,2026-04-01,2026-04-30,2026-04-03T09:00:00+09:00,2026-04-03T18:15:00+09:00,60,15,495,8.25,19000,156750,vatable_standard,site_lead_mobile,doc://attendance/clean-approved-timesheet.pdf,,2026-04-03T18:35:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,2,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-override-1,worker-override-1,attendance-corrected-approved-1,2026-04-04,2026-04-01,2026-04-30,2026-04-04T08:58:00+09:00,2026-04-04T18:42:00+09:00,60,42,524,8.73,19000,165933,vatable_standard,site_lead_mobile,doc://attendance/corrected-overtime-proof.pdf,Correction reapplied before finance handoff close.,2026-04-05T09:15:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1"
+      },
+      "scheduledAt": "2026-04-07T09:00:00+09:00",
+      "attempts": 0,
+      "maxAttempts": 10,
+      "createdAt": "2026-04-07T09:00:00+09:00",
+      "updatedAt": "2026-04-07T09:00:00+09:00"
+    },
+    "eligibleAssignmentIds": [
+      "assignment-cold-chain-ready-1",
+      "assignment-cold-chain-override-1"
+    ],
+    "excludedAttendanceIds": [
+      "attendance-blocked-unapproved-1"
+    ]
+  },
+  "permissions": {
+    "placementOverride": {
+      "allowed": {
+        "actorUserId": "ops-admin-1",
+        "actorRole": "admin",
+        "authorizationAuditEvent": {
+          "id": "audit-assignment-override-auth-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "placement",
+          "entityType": "assignment",
+          "entityId": "assignment-cold-chain-override-1",
+          "actorUserId": "ops-admin-1",
+          "action": "placement.override_authorized",
+          "occurredAt": "2026-04-02T09:15:00+09:00",
+          "payload": {
+            "roleBoundaryAction": "placement_override",
+            "decision": "authorized",
+            "actorRole": "admin",
+            "allowedRoles": [
+              "admin",
+              "operations_manager"
+            ],
+            "context": {
+              "orderId": "order-cold-chain-pilot-1",
+              "workerId": "worker-override-1",
+              "overrideReason": "Operations manager approved temporary deployment while missing compliance evidence is collected.",
+              "blockers": [
+                {
+                  "code": "document_not_ready",
+                  "detail": "Worker document readiness is missing."
+                },
+                {
+                  "code": "worker_unavailable",
+                  "detail": "Worker availability is unavailable."
+                },
+                {
+                  "code": "recent_assignment_conflict",
+                  "detail": "Previous site released the worker late; first-shift deployment required explicit pilot override."
+                }
+              ]
+            }
+          }
+        },
+        "resultingAuditEvent": {
+          "id": "audit-assignment-override-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "placement",
+          "entityType": "assignment",
+          "entityId": "assignment-cold-chain-override-1",
+          "actorUserId": "ops-admin-1",
+          "action": "assignment.committed",
+          "occurredAt": "2026-04-02T09:15:00+09:00",
+          "payload": {
+            "before": {
+              "orderStatus": "partially_filled",
+              "slotsFilled": 1
+            },
+            "after": {
+              "orderStatus": "filled",
+              "slotsFilled": 2
+            },
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-override-1",
+            "overrideReason": "Operations manager approved temporary deployment while missing compliance evidence is collected.",
+            "blockers": [
+              {
+                "code": "document_not_ready",
+                "detail": "Worker document readiness is missing."
+              },
+              {
+                "code": "worker_unavailable",
+                "detail": "Worker availability is unavailable."
+              },
+              {
+                "code": "recent_assignment_conflict",
+                "detail": "Previous site released the worker late; first-shift deployment required explicit pilot override."
+              }
+            ]
+          }
+        }
+      },
+      "denied": {
+        "actorUserId": "ops-placement-1",
+        "actorRole": "operations_operator",
+        "denialAuditEvent": {
+          "id": "audit-assignment-override-denied-auth-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "placement",
+          "entityType": "assignment",
+          "entityId": "assignment-cold-chain-override-denied-1",
+          "actorUserId": "ops-placement-1",
+          "action": "placement.override_denied",
+          "occurredAt": "2026-04-02T09:12:00+09:00",
+          "payload": {
+            "roleBoundaryAction": "placement_override",
+            "decision": "denied",
+            "actorRole": "operations_operator",
+            "allowedRoles": [
+              "admin",
+              "operations_manager"
+            ],
+            "denialReason": "Role operations_operator cannot perform placement.override. Allowed roles: admin, operations_manager.",
+            "context": {
+              "orderId": "order-cold-chain-pilot-1",
+              "workerId": "worker-override-1",
+              "overrideReason": "Operations operator attempted to bypass the missing evidence gate without manager approval.",
+              "blockers": [
+                {
+                  "code": "document_not_ready",
+                  "detail": "Worker document readiness is missing."
+                },
+                {
+                  "code": "worker_unavailable",
+                  "detail": "Worker availability is unavailable."
+                },
+                {
+                  "code": "recent_assignment_conflict",
+                  "detail": "Previous site released the worker late; first-shift deployment required explicit pilot override."
+                }
+              ]
+            }
+          }
+        },
+        "errorMessage": "Role operations_operator cannot perform placement.override. Allowed roles: admin, operations_manager."
+      }
+    },
+    "attendanceCorrection": {
+      "allowed": {
+        "actorUserId": "ops-attendance-2",
+        "actorRole": "operations_operator",
+        "authorizationAuditEvent": {
+          "id": "audit-attendance-corrected-auth-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-corrected-approved-1",
+          "actorUserId": "ops-attendance-2",
+          "action": "attendance.correction_authorized",
+          "occurredAt": "2026-04-05T09:00:00+09:00",
+          "payload": {
+            "roleBoundaryAction": "attendance_correction",
+            "decision": "authorized",
+            "actorRole": "operations_operator",
+            "allowedRoles": [
+              "admin",
+              "operations_manager",
+              "operations_operator"
+            ],
+            "context": {
+              "assignmentId": "assignment-cold-chain-override-1",
+              "previousStatus": "approved",
+              "correctionReason": "Driver log and freezer-gate evidence confirmed additional overtime minutes."
+            }
+          }
+        },
+        "resultingAuditEvent": {
+          "id": "audit-attendance-corrected-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-corrected-approved-1",
+          "actorUserId": "ops-attendance-2",
+          "action": "attendance.corrected",
+          "occurredAt": "2026-04-05T09:00:00+09:00",
+          "payload": {
+            "correctionReason": "Driver log and freezer-gate evidence confirmed additional overtime minutes.",
+            "before": {
+              "status": "approved",
+              "actualStartAt": "2026-04-04T08:58:00+09:00",
+              "actualEndAt": "2026-04-04T18:05:00+09:00",
+              "breakMinutes": 60,
+              "overtimeMinutes": 5,
+              "exceptionCode": null,
+              "approvedAt": "2026-04-04T18:25:00+09:00",
+              "approvedByUserId": "ops-manager-1"
+            },
+            "after": {
+              "status": "corrected",
+              "actualStartAt": "2026-04-04T08:58:00+09:00",
+              "actualEndAt": "2026-04-04T18:42:00+09:00",
+              "breakMinutes": 60,
+              "overtimeMinutes": 42,
+              "exceptionCode": null,
+              "approvedAt": null,
+              "approvedByUserId": null
+            }
+          }
+        }
+      },
+      "denied": {
+        "actorUserId": "site-lead-1",
+        "actorRole": "site_lead",
+        "denialAuditEvent": {
+          "id": "audit-attendance-corrected-denied-auth-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "attendance",
+          "entityType": "attendance",
+          "entityId": "attendance-corrected-approved-1",
+          "actorUserId": "site-lead-1",
+          "action": "attendance.correction_denied",
+          "occurredAt": "2026-04-05T08:55:00+09:00",
+          "payload": {
+            "roleBoundaryAction": "attendance_correction",
+            "decision": "denied",
+            "actorRole": "site_lead",
+            "allowedRoles": [
+              "admin",
+              "operations_manager",
+              "operations_operator"
+            ],
+            "denialReason": "Role site_lead cannot perform attendance.correction. Allowed roles: admin, operations_manager, operations_operator.",
+            "context": {
+              "assignmentId": "assignment-cold-chain-override-1",
+              "previousStatus": "approved",
+              "correctionReason": "Site lead attempted to revise hours without operator review."
+            }
+          }
+        },
+        "errorMessage": "Role site_lead cannot perform attendance.correction. Allowed roles: admin, operations_manager, operations_operator."
+      }
+    },
+    "billingExport": {
+      "allowed": {
+        "actorUserId": "finance-admin-1",
+        "actorRole": "finance_admin",
+        "authorizationAuditEvent": {
+          "id": "audit-export-auth-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "billing",
+          "entityType": "billing_handoff_batch",
+          "entityId": "billing-handoff-batch-pilot-1",
+          "actorUserId": "finance-admin-1",
+          "action": "billing.finance_handoff_export_authorized",
+          "occurredAt": "2026-04-07T09:00:00+09:00",
+          "payload": {
+            "roleBoundaryAction": "billing_export",
+            "decision": "authorized",
+            "actorRole": "finance_admin",
+            "allowedRoles": [
+              "admin",
+              "operations_manager",
+              "finance_admin"
+            ],
+            "context": {
+              "clientAccountId": "client-design-partner-1",
+              "siteId": "site-gimpo-cold-chain-1",
+              "lineCount": 2,
+              "sourceAttendanceIds": [
+                "attendance-clean-approved-1",
+                "attendance-corrected-approved-1"
+              ]
+            }
+          }
+        },
+        "resultingAuditEvent": {
+          "id": "audit-export-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "billing",
+          "entityType": "billing_handoff_batch",
+          "entityId": "billing-handoff-batch-pilot-1",
+          "actorUserId": "finance-admin-1",
+          "action": "billing.finance_handoff_exported",
+          "occurredAt": "2026-04-07T09:00:00+09:00",
+          "payload": {
+            "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+            "exportFormat": "csv",
+            "clientAccountId": "client-design-partner-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "billingPeriodStart": "2026-04-01",
+            "billingPeriodEnd": "2026-04-30",
+            "rowCount": 2,
+            "sourceAttendanceIds": [
+              "attendance-clean-approved-1",
+              "attendance-corrected-approved-1"
+            ],
+            "sourceAssignmentIds": [
+              "assignment-cold-chain-ready-1",
+              "assignment-cold-chain-override-1"
+            ]
+          }
+        }
+      },
+      "denied": {
+        "actorUserId": "site-lead-1",
+        "actorRole": "site_lead",
+        "denialAuditEvent": {
+          "id": "audit-export-denied-auth-pilot-1",
+          "organizationId": "org-design-partner-1",
+          "module": "billing",
+          "entityType": "billing_handoff_batch",
+          "entityId": "billing-handoff-batch-pilot-denied-1",
+          "actorUserId": "site-lead-1",
+          "action": "billing.finance_handoff_export_denied",
+          "occurredAt": "2026-04-07T08:50:00+09:00",
+          "payload": {
+            "roleBoundaryAction": "billing_export",
+            "decision": "denied",
+            "actorRole": "site_lead",
+            "allowedRoles": [
+              "admin",
+              "operations_manager",
+              "finance_admin"
+            ],
+            "denialReason": "Role site_lead cannot perform billing.finance_handoff_export. Allowed roles: admin, operations_manager, finance_admin.",
+            "context": {
+              "clientAccountId": "client-design-partner-1",
+              "siteId": "site-gimpo-cold-chain-1",
+              "lineCount": 1,
+              "sourceAttendanceIds": [
+                "attendance-clean-approved-1"
+              ]
+            }
+          }
+        },
+        "errorMessage": "Role site_lead cannot perform billing.finance_handoff_export. Allowed roles: admin, operations_manager, finance_admin."
+      }
+    }
+  },
+  "persistedRows": {
+    "orders": [
+      {
+        "id": "order-cold-chain-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "clientAccountId": "client-design-partner-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "roleCode": "cold-chain-picker",
+        "headcountRequired": 2,
+        "requiredQualifications": [
+          "forklift",
+          "cold-chain-check"
+        ],
+        "slotsFilled": 0,
+        "startDate": "2026-04-03",
+        "endDate": "2026-04-30",
+        "shiftPattern": "weekday-day",
+        "billRateKrw": 19000,
+        "overtimeRuleCode": "kr-standard-meal-after-8h",
+        "status": "open",
+        "createdAt": "2026-04-01T09:00:00+09:00",
+        "updatedAt": "2026-04-01T09:30:00+09:00"
+      }
+    ],
+    "assignments": [
+      {
+        "id": "assignment-cold-chain-ready-1",
+        "organizationId": "org-design-partner-1",
+        "clientAccountId": "client-design-partner-1",
+        "orderId": "order-cold-chain-pilot-1",
+        "workerId": "worker-ready-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "plannedStartDate": "2026-04-03",
+        "plannedEndDate": "2026-04-30",
+        "sourceChannel": "operator_console",
+        "status": "confirmed",
+        "snapshot": {
+          "snapshotVersion": 1,
+          "id": "assignment-cold-chain-ready-1",
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-ready-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "payRateKrw": 14000,
+          "billRateKrw": 19000,
+          "shiftPattern": "weekday-day",
+          "effectiveDate": "2026-04-03",
+          "serviceType": "dispatch",
+          "plannedStartDate": "2026-04-03",
+          "plannedEndDate": "2026-04-30",
+          "sourceChannel": "operator_console",
+          "createdAt": "2026-04-02T09:00:00+09:00"
+        },
+        "createdAt": "2026-04-02T09:00:00+09:00",
+        "updatedAt": "2026-04-02T09:00:00+09:00"
+      },
+      {
+        "id": "assignment-cold-chain-override-1",
+        "organizationId": "org-design-partner-1",
+        "clientAccountId": "client-design-partner-1",
+        "orderId": "order-cold-chain-pilot-1",
+        "workerId": "worker-override-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "plannedStartDate": "2026-04-03",
+        "plannedEndDate": "2026-04-30",
+        "sourceChannel": "operator_console",
+        "status": "confirmed",
+        "snapshot": {
+          "snapshotVersion": 1,
+          "id": "assignment-cold-chain-override-1",
+          "organizationId": "org-design-partner-1",
+          "clientAccountId": "client-design-partner-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-override-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "payRateKrw": 14500,
+          "billRateKrw": 19000,
+          "shiftPattern": "weekday-day",
+          "effectiveDate": "2026-04-03",
+          "serviceType": "dispatch",
+          "plannedStartDate": "2026-04-03",
+          "plannedEndDate": "2026-04-30",
+          "sourceChannel": "operator_console",
+          "createdAt": "2026-04-02T09:15:00+09:00"
+        },
+        "createdAt": "2026-04-02T09:15:00+09:00",
+        "updatedAt": "2026-04-02T09:15:00+09:00"
+      }
+    ],
+    "attendance": [
+      {
+        "id": "attendance-clean-approved-1",
+        "organizationId": "org-design-partner-1",
+        "assignmentId": "assignment-cold-chain-ready-1",
+        "workDate": "2026-04-03",
+        "scheduledStartAt": "2026-04-03T09:00:00+09:00",
+        "scheduledEndAt": "2026-04-03T18:00:00+09:00",
+        "actualStartAt": "2026-04-03T09:00:00+09:00",
+        "actualEndAt": "2026-04-03T18:15:00+09:00",
+        "breakMinutes": 60,
+        "overtimeMinutes": 15,
+        "status": "approved",
+        "source": "site_lead_mobile",
+        "createdAt": "2026-04-03T18:00:00+09:00",
+        "updatedAt": "2026-04-03T18:35:00+09:00",
+        "approvedAt": "2026-04-03T18:35:00+09:00",
+        "approvedByUserId": "ops-manager-1"
+      },
+      {
+        "id": "attendance-corrected-approved-1",
+        "organizationId": "org-design-partner-1",
+        "assignmentId": "assignment-cold-chain-override-1",
+        "workDate": "2026-04-04",
+        "scheduledStartAt": "2026-04-04T09:00:00+09:00",
+        "scheduledEndAt": "2026-04-04T18:00:00+09:00",
+        "actualStartAt": "2026-04-04T08:58:00+09:00",
+        "actualEndAt": "2026-04-04T18:42:00+09:00",
+        "breakMinutes": 60,
+        "overtimeMinutes": 42,
+        "status": "approved",
+        "source": "site_lead_mobile",
+        "createdAt": "2026-04-04T18:00:00+09:00",
+        "updatedAt": "2026-04-05T09:15:00+09:00",
+        "approvedAt": "2026-04-05T09:15:00+09:00",
+        "approvedByUserId": "ops-manager-1"
+      },
+      {
+        "id": "attendance-blocked-unapproved-1",
+        "organizationId": "org-design-partner-1",
+        "assignmentId": "assignment-cold-chain-override-1",
+        "workDate": "2026-04-05",
+        "scheduledStartAt": "2026-04-05T09:00:00+09:00",
+        "scheduledEndAt": "2026-04-05T18:00:00+09:00",
+        "actualStartAt": "2026-04-05T09:03:00+09:00",
+        "actualEndAt": "2026-04-05T18:01:00+09:00",
+        "breakMinutes": 60,
+        "overtimeMinutes": 1,
+        "status": "submitted",
+        "source": "site_lead_mobile",
+        "exceptionCode": "site_signoff_missing",
+        "createdAt": "2026-04-05T18:00:00+09:00",
+        "updatedAt": "2026-04-05T18:10:00+09:00"
+      }
+    ],
+    "billingHandoffBatch": {
+      "id": "billing-handoff-batch-pilot-1",
+      "organizationId": "org-design-partner-1",
+      "clientAccountId": "client-design-partner-1",
+      "siteId": "site-gimpo-cold-chain-1",
+      "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+      "billingPeriodStart": "2026-04-01",
+      "billingPeriodEnd": "2026-04-30",
+      "exportFormat": "csv",
+      "generatedAt": "2026-04-07T09:00:00+09:00",
+      "generatedByUserId": "finance-admin-1",
+      "sourceAttendanceIds": [
+        "attendance-clean-approved-1",
+        "attendance-corrected-approved-1"
+      ],
+      "sourceAssignmentSnapshots": [
+        {
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-ready-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "snapshot": {
+            "snapshotVersion": 1,
+            "id": "assignment-cold-chain-ready-1",
+            "organizationId": "org-design-partner-1",
+            "clientAccountId": "client-design-partner-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-ready-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "payRateKrw": 14000,
+            "billRateKrw": 19000,
+            "shiftPattern": "weekday-day",
+            "effectiveDate": "2026-04-03",
+            "serviceType": "dispatch",
+            "plannedStartDate": "2026-04-03",
+            "plannedEndDate": "2026-04-30",
+            "sourceChannel": "operator_console",
+            "createdAt": "2026-04-02T09:00:00+09:00"
+          }
+        },
+        {
+          "assignmentId": "assignment-cold-chain-override-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-override-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "snapshot": {
+            "snapshotVersion": 1,
+            "id": "assignment-cold-chain-override-1",
+            "organizationId": "org-design-partner-1",
+            "clientAccountId": "client-design-partner-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-override-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "payRateKrw": 14500,
+            "billRateKrw": 19000,
+            "shiftPattern": "weekday-day",
+            "effectiveDate": "2026-04-03",
+            "serviceType": "dispatch",
+            "plannedStartDate": "2026-04-03",
+            "plannedEndDate": "2026-04-30",
+            "sourceChannel": "operator_console",
+            "createdAt": "2026-04-02T09:15:00+09:00"
+          }
+        }
+      ],
+      "artifactPayload": {
+        "exportBatchId": "billing-handoff-batch-pilot-1",
+        "organizationId": "org-design-partner-1",
+        "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+        "clientAccountId": "client-design-partner-1",
+        "siteId": "site-gimpo-cold-chain-1",
+        "billingPeriodStart": "2026-04-01",
+        "billingPeriodEnd": "2026-04-30",
+        "generatedAt": "2026-04-07T09:00:00+09:00",
+        "generatedByUserId": "finance-admin-1",
+        "format": "csv",
+        "columns": [
+          "exportBatchId",
+          "batchKey",
+          "lineNumber",
+          "clientAccountId",
+          "siteId",
+          "orderId",
+          "assignmentId",
+          "workerId",
+          "attendanceId",
+          "workDate",
+          "billingPeriodStart",
+          "billingPeriodEnd",
+          "actualStartAt",
+          "actualEndAt",
+          "breakMinutes",
+          "overtimeMinutes",
+          "billableMinutes",
+          "billableHours",
+          "billRateKrw",
+          "billAmountKrw",
+          "taxTreatmentCode",
+          "attendanceSource",
+          "supportingAttendanceEvidence",
+          "disputeNote",
+          "requestedAt",
+          "generatedAt",
+          "generatedByUserId"
+        ],
+        "rows": [
+          {
+            "exportBatchId": "billing-handoff-batch-pilot-1",
+            "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+            "lineNumber": 1,
+            "clientAccountId": "client-design-partner-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "assignmentId": "assignment-cold-chain-ready-1",
+            "workerId": "worker-ready-1",
+            "attendanceId": "attendance-clean-approved-1",
+            "workDate": "2026-04-03",
+            "billingPeriodStart": "2026-04-01",
+            "billingPeriodEnd": "2026-04-30",
+            "actualStartAt": "2026-04-03T09:00:00+09:00",
+            "actualEndAt": "2026-04-03T18:15:00+09:00",
+            "breakMinutes": 60,
+            "overtimeMinutes": 15,
+            "billableMinutes": 495,
+            "billableHours": 8.25,
+            "billRateKrw": 19000,
+            "billAmountKrw": 156750,
+            "taxTreatmentCode": "vatable_standard",
+            "attendanceSource": "site_lead_mobile",
+            "supportingAttendanceEvidence": [
+              "doc://attendance/clean-approved-timesheet.pdf"
+            ],
+            "requestedAt": "2026-04-03T18:35:00+09:00",
+            "generatedAt": "2026-04-07T09:00:00+09:00",
+            "generatedByUserId": "finance-admin-1"
+          },
+          {
+            "exportBatchId": "billing-handoff-batch-pilot-1",
+            "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+            "lineNumber": 2,
+            "clientAccountId": "client-design-partner-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "assignmentId": "assignment-cold-chain-override-1",
+            "workerId": "worker-override-1",
+            "attendanceId": "attendance-corrected-approved-1",
+            "workDate": "2026-04-04",
+            "billingPeriodStart": "2026-04-01",
+            "billingPeriodEnd": "2026-04-30",
+            "actualStartAt": "2026-04-04T08:58:00+09:00",
+            "actualEndAt": "2026-04-04T18:42:00+09:00",
+            "breakMinutes": 60,
+            "overtimeMinutes": 42,
+            "billableMinutes": 524,
+            "billableHours": 8.73,
+            "billRateKrw": 19000,
+            "billAmountKrw": 165933,
+            "taxTreatmentCode": "vatable_standard",
+            "attendanceSource": "site_lead_mobile",
+            "supportingAttendanceEvidence": [
+              "doc://attendance/corrected-overtime-proof.pdf"
+            ],
+            "disputeNote": "Correction reapplied before finance handoff close.",
+            "requestedAt": "2026-04-05T09:15:00+09:00",
+            "generatedAt": "2026-04-07T09:00:00+09:00",
+            "generatedByUserId": "finance-admin-1"
+          }
+        ],
+        "csvContent": "exportBatchId,batchKey,lineNumber,clientAccountId,siteId,orderId,assignmentId,workerId,attendanceId,workDate,billingPeriodStart,billingPeriodEnd,actualStartAt,actualEndAt,breakMinutes,overtimeMinutes,billableMinutes,billableHours,billRateKrw,billAmountKrw,taxTreatmentCode,attendanceSource,supportingAttendanceEvidence,disputeNote,requestedAt,generatedAt,generatedByUserId\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,1,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-ready-1,worker-ready-1,attendance-clean-approved-1,2026-04-03,2026-04-01,2026-04-30,2026-04-03T09:00:00+09:00,2026-04-03T18:15:00+09:00,60,15,495,8.25,19000,156750,vatable_standard,site_lead_mobile,doc://attendance/clean-approved-timesheet.pdf,,2026-04-03T18:35:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,2,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-override-1,worker-override-1,attendance-corrected-approved-1,2026-04-04,2026-04-01,2026-04-30,2026-04-04T08:58:00+09:00,2026-04-04T18:42:00+09:00,60,42,524,8.73,19000,165933,vatable_standard,site_lead_mobile,doc://attendance/corrected-overtime-proof.pdf,Correction reapplied before finance handoff close.,2026-04-05T09:15:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1",
+        "sourceAttendanceIds": [
+          "attendance-clean-approved-1",
+          "attendance-corrected-approved-1"
+        ],
+        "sourceAssignmentSnapshots": [
+          {
+            "assignmentId": "assignment-cold-chain-ready-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-ready-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "snapshot": {
+              "snapshotVersion": 1,
+              "id": "assignment-cold-chain-ready-1",
+              "organizationId": "org-design-partner-1",
+              "clientAccountId": "client-design-partner-1",
+              "orderId": "order-cold-chain-pilot-1",
+              "workerId": "worker-ready-1",
+              "siteId": "site-gimpo-cold-chain-1",
+              "payRateKrw": 14000,
+              "billRateKrw": 19000,
+              "shiftPattern": "weekday-day",
+              "effectiveDate": "2026-04-03",
+              "serviceType": "dispatch",
+              "plannedStartDate": "2026-04-03",
+              "plannedEndDate": "2026-04-30",
+              "sourceChannel": "operator_console",
+              "createdAt": "2026-04-02T09:00:00+09:00"
+            }
+          },
+          {
+            "assignmentId": "assignment-cold-chain-override-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-override-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "snapshot": {
+              "snapshotVersion": 1,
+              "id": "assignment-cold-chain-override-1",
+              "organizationId": "org-design-partner-1",
+              "clientAccountId": "client-design-partner-1",
+              "orderId": "order-cold-chain-pilot-1",
+              "workerId": "worker-override-1",
+              "siteId": "site-gimpo-cold-chain-1",
+              "payRateKrw": 14500,
+              "billRateKrw": 19000,
+              "shiftPattern": "weekday-day",
+              "effectiveDate": "2026-04-03",
+              "serviceType": "dispatch",
+              "plannedStartDate": "2026-04-03",
+              "plannedEndDate": "2026-04-30",
+              "sourceChannel": "operator_console",
+              "createdAt": "2026-04-02T09:15:00+09:00"
+            }
+          }
+        ]
+      },
+      "createdAt": "2026-04-07T09:00:00+09:00",
+      "updatedAt": "2026-04-07T09:00:00+09:00"
+    }
+  },
+  "trace": {
+    "orderId": "order-cold-chain-pilot-1",
+    "assignmentIds": [
+      "assignment-cold-chain-ready-1",
+      "assignment-cold-chain-override-1"
+    ],
+    "approvedAttendanceIds": [
+      "attendance-clean-approved-1",
+      "attendance-corrected-approved-1"
+    ],
+    "excludedAttendanceIds": [
+      "attendance-blocked-unapproved-1"
+    ],
+    "exportBatchId": "billing-handoff-batch-pilot-1",
+    "exportBatchKey": "billing-handoff:billing-handoff-batch-pilot-1"
+  },
+  "archivePayload": {
+    "fixtureId": "design-partner-pilot-v1",
+    "environmentName": "pilot-reviewable-proof",
+    "timezone": "Asia/Seoul",
+    "operatorRolesUsed": [
+      "admin",
+      "operations_operator",
+      "operations_manager",
+      "finance_admin",
+      "site_lead"
+    ],
+    "trace": {
+      "orderId": "order-cold-chain-pilot-1",
+      "assignmentIds": [
+        "assignment-cold-chain-ready-1",
+        "assignment-cold-chain-override-1"
+      ],
+      "approvedAttendanceIds": [
+        "attendance-clean-approved-1",
+        "attendance-corrected-approved-1"
+      ],
+      "excludedAttendanceIds": [
+        "attendance-blocked-unapproved-1"
+      ],
+      "exportBatchId": "billing-handoff-batch-pilot-1",
+      "exportBatchKey": "billing-handoff:billing-handoff-batch-pilot-1"
+    },
+    "artifactPayload": {
+      "exportBatchId": "billing-handoff-batch-pilot-1",
+      "organizationId": "org-design-partner-1",
+      "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+      "clientAccountId": "client-design-partner-1",
+      "siteId": "site-gimpo-cold-chain-1",
+      "billingPeriodStart": "2026-04-01",
+      "billingPeriodEnd": "2026-04-30",
+      "generatedAt": "2026-04-07T09:00:00+09:00",
+      "generatedByUserId": "finance-admin-1",
+      "format": "csv",
+      "columns": [
+        "exportBatchId",
+        "batchKey",
+        "lineNumber",
+        "clientAccountId",
+        "siteId",
+        "orderId",
+        "assignmentId",
+        "workerId",
+        "attendanceId",
+        "workDate",
+        "billingPeriodStart",
+        "billingPeriodEnd",
+        "actualStartAt",
+        "actualEndAt",
+        "breakMinutes",
+        "overtimeMinutes",
+        "billableMinutes",
+        "billableHours",
+        "billRateKrw",
+        "billAmountKrw",
+        "taxTreatmentCode",
+        "attendanceSource",
+        "supportingAttendanceEvidence",
+        "disputeNote",
+        "requestedAt",
+        "generatedAt",
+        "generatedByUserId"
+      ],
+      "rows": [
+        {
+          "exportBatchId": "billing-handoff-batch-pilot-1",
+          "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+          "lineNumber": 1,
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "workerId": "worker-ready-1",
+          "attendanceId": "attendance-clean-approved-1",
+          "workDate": "2026-04-03",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "actualStartAt": "2026-04-03T09:00:00+09:00",
+          "actualEndAt": "2026-04-03T18:15:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 15,
+          "billableMinutes": 495,
+          "billableHours": 8.25,
+          "billRateKrw": 19000,
+          "billAmountKrw": 156750,
+          "taxTreatmentCode": "vatable_standard",
+          "attendanceSource": "site_lead_mobile",
+          "supportingAttendanceEvidence": [
+            "doc://attendance/clean-approved-timesheet.pdf"
+          ],
+          "requestedAt": "2026-04-03T18:35:00+09:00",
+          "generatedAt": "2026-04-07T09:00:00+09:00",
+          "generatedByUserId": "finance-admin-1"
+        },
+        {
+          "exportBatchId": "billing-handoff-batch-pilot-1",
+          "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+          "lineNumber": 2,
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "assignmentId": "assignment-cold-chain-override-1",
+          "workerId": "worker-override-1",
+          "attendanceId": "attendance-corrected-approved-1",
+          "workDate": "2026-04-04",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "actualStartAt": "2026-04-04T08:58:00+09:00",
+          "actualEndAt": "2026-04-04T18:42:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 42,
+          "billableMinutes": 524,
+          "billableHours": 8.73,
+          "billRateKrw": 19000,
+          "billAmountKrw": 165933,
+          "taxTreatmentCode": "vatable_standard",
+          "attendanceSource": "site_lead_mobile",
+          "supportingAttendanceEvidence": [
+            "doc://attendance/corrected-overtime-proof.pdf"
+          ],
+          "disputeNote": "Correction reapplied before finance handoff close.",
+          "requestedAt": "2026-04-05T09:15:00+09:00",
+          "generatedAt": "2026-04-07T09:00:00+09:00",
+          "generatedByUserId": "finance-admin-1"
+        }
+      ],
+      "csvContent": "exportBatchId,batchKey,lineNumber,clientAccountId,siteId,orderId,assignmentId,workerId,attendanceId,workDate,billingPeriodStart,billingPeriodEnd,actualStartAt,actualEndAt,breakMinutes,overtimeMinutes,billableMinutes,billableHours,billRateKrw,billAmountKrw,taxTreatmentCode,attendanceSource,supportingAttendanceEvidence,disputeNote,requestedAt,generatedAt,generatedByUserId\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,1,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-ready-1,worker-ready-1,attendance-clean-approved-1,2026-04-03,2026-04-01,2026-04-30,2026-04-03T09:00:00+09:00,2026-04-03T18:15:00+09:00,60,15,495,8.25,19000,156750,vatable_standard,site_lead_mobile,doc://attendance/clean-approved-timesheet.pdf,,2026-04-03T18:35:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,2,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-override-1,worker-override-1,attendance-corrected-approved-1,2026-04-04,2026-04-01,2026-04-30,2026-04-04T08:58:00+09:00,2026-04-04T18:42:00+09:00,60,42,524,8.73,19000,165933,vatable_standard,site_lead_mobile,doc://attendance/corrected-overtime-proof.pdf,Correction reapplied before finance handoff close.,2026-04-05T09:15:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1",
+      "sourceAttendanceIds": [
+        "attendance-clean-approved-1",
+        "attendance-corrected-approved-1"
+      ],
+      "sourceAssignmentSnapshots": [
+        {
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-ready-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "snapshot": {
+            "snapshotVersion": 1,
+            "id": "assignment-cold-chain-ready-1",
+            "organizationId": "org-design-partner-1",
+            "clientAccountId": "client-design-partner-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-ready-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "payRateKrw": 14000,
+            "billRateKrw": 19000,
+            "shiftPattern": "weekday-day",
+            "effectiveDate": "2026-04-03",
+            "serviceType": "dispatch",
+            "plannedStartDate": "2026-04-03",
+            "plannedEndDate": "2026-04-30",
+            "sourceChannel": "operator_console",
+            "createdAt": "2026-04-02T09:00:00+09:00"
+          }
+        },
+        {
+          "assignmentId": "assignment-cold-chain-override-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-override-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "snapshot": {
+            "snapshotVersion": 1,
+            "id": "assignment-cold-chain-override-1",
+            "organizationId": "org-design-partner-1",
+            "clientAccountId": "client-design-partner-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-override-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "payRateKrw": 14500,
+            "billRateKrw": 19000,
+            "shiftPattern": "weekday-day",
+            "effectiveDate": "2026-04-03",
+            "serviceType": "dispatch",
+            "plannedStartDate": "2026-04-03",
+            "plannedEndDate": "2026-04-30",
+            "sourceChannel": "operator_console",
+            "createdAt": "2026-04-02T09:15:00+09:00"
+          }
+        }
+      ]
+    },
+    "outboxPayload": {
+      "exportBatchId": "billing-handoff-batch-pilot-1",
+      "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+      "generatedAt": "2026-04-07T09:00:00+09:00",
+      "generatedByUserId": "finance-admin-1",
+      "format": "csv",
+      "rowCount": 2,
+      "sourceAttendanceIds": [
+        "attendance-clean-approved-1",
+        "attendance-corrected-approved-1"
+      ],
+      "sourceAssignmentSnapshots": [
+        {
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-ready-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "snapshot": {
+            "snapshotVersion": 1,
+            "id": "assignment-cold-chain-ready-1",
+            "organizationId": "org-design-partner-1",
+            "clientAccountId": "client-design-partner-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-ready-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "payRateKrw": 14000,
+            "billRateKrw": 19000,
+            "shiftPattern": "weekday-day",
+            "effectiveDate": "2026-04-03",
+            "serviceType": "dispatch",
+            "plannedStartDate": "2026-04-03",
+            "plannedEndDate": "2026-04-30",
+            "sourceChannel": "operator_console",
+            "createdAt": "2026-04-02T09:00:00+09:00"
+          }
+        },
+        {
+          "assignmentId": "assignment-cold-chain-override-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "workerId": "worker-override-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "snapshot": {
+            "snapshotVersion": 1,
+            "id": "assignment-cold-chain-override-1",
+            "organizationId": "org-design-partner-1",
+            "clientAccountId": "client-design-partner-1",
+            "orderId": "order-cold-chain-pilot-1",
+            "workerId": "worker-override-1",
+            "siteId": "site-gimpo-cold-chain-1",
+            "payRateKrw": 14500,
+            "billRateKrw": 19000,
+            "shiftPattern": "weekday-day",
+            "effectiveDate": "2026-04-03",
+            "serviceType": "dispatch",
+            "plannedStartDate": "2026-04-03",
+            "plannedEndDate": "2026-04-30",
+            "sourceChannel": "operator_console",
+            "createdAt": "2026-04-02T09:15:00+09:00"
+          }
+        }
+      ],
+      "rows": [
+        {
+          "exportBatchId": "billing-handoff-batch-pilot-1",
+          "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+          "lineNumber": 1,
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "assignmentId": "assignment-cold-chain-ready-1",
+          "workerId": "worker-ready-1",
+          "attendanceId": "attendance-clean-approved-1",
+          "workDate": "2026-04-03",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "actualStartAt": "2026-04-03T09:00:00+09:00",
+          "actualEndAt": "2026-04-03T18:15:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 15,
+          "billableMinutes": 495,
+          "billableHours": 8.25,
+          "billRateKrw": 19000,
+          "billAmountKrw": 156750,
+          "taxTreatmentCode": "vatable_standard",
+          "attendanceSource": "site_lead_mobile",
+          "supportingAttendanceEvidence": [
+            "doc://attendance/clean-approved-timesheet.pdf"
+          ],
+          "requestedAt": "2026-04-03T18:35:00+09:00",
+          "generatedAt": "2026-04-07T09:00:00+09:00",
+          "generatedByUserId": "finance-admin-1"
+        },
+        {
+          "exportBatchId": "billing-handoff-batch-pilot-1",
+          "batchKey": "billing-handoff:billing-handoff-batch-pilot-1",
+          "lineNumber": 2,
+          "clientAccountId": "client-design-partner-1",
+          "siteId": "site-gimpo-cold-chain-1",
+          "orderId": "order-cold-chain-pilot-1",
+          "assignmentId": "assignment-cold-chain-override-1",
+          "workerId": "worker-override-1",
+          "attendanceId": "attendance-corrected-approved-1",
+          "workDate": "2026-04-04",
+          "billingPeriodStart": "2026-04-01",
+          "billingPeriodEnd": "2026-04-30",
+          "actualStartAt": "2026-04-04T08:58:00+09:00",
+          "actualEndAt": "2026-04-04T18:42:00+09:00",
+          "breakMinutes": 60,
+          "overtimeMinutes": 42,
+          "billableMinutes": 524,
+          "billableHours": 8.73,
+          "billRateKrw": 19000,
+          "billAmountKrw": 165933,
+          "taxTreatmentCode": "vatable_standard",
+          "attendanceSource": "site_lead_mobile",
+          "supportingAttendanceEvidence": [
+            "doc://attendance/corrected-overtime-proof.pdf"
+          ],
+          "disputeNote": "Correction reapplied before finance handoff close.",
+          "requestedAt": "2026-04-05T09:15:00+09:00",
+          "generatedAt": "2026-04-07T09:00:00+09:00",
+          "generatedByUserId": "finance-admin-1"
+        }
+      ],
+      "csvContent": "exportBatchId,batchKey,lineNumber,clientAccountId,siteId,orderId,assignmentId,workerId,attendanceId,workDate,billingPeriodStart,billingPeriodEnd,actualStartAt,actualEndAt,breakMinutes,overtimeMinutes,billableMinutes,billableHours,billRateKrw,billAmountKrw,taxTreatmentCode,attendanceSource,supportingAttendanceEvidence,disputeNote,requestedAt,generatedAt,generatedByUserId\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,1,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-ready-1,worker-ready-1,attendance-clean-approved-1,2026-04-03,2026-04-01,2026-04-30,2026-04-03T09:00:00+09:00,2026-04-03T18:15:00+09:00,60,15,495,8.25,19000,156750,vatable_standard,site_lead_mobile,doc://attendance/clean-approved-timesheet.pdf,,2026-04-03T18:35:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1\nbilling-handoff-batch-pilot-1,billing-handoff:billing-handoff-batch-pilot-1,2,client-design-partner-1,site-gimpo-cold-chain-1,order-cold-chain-pilot-1,assignment-cold-chain-override-1,worker-override-1,attendance-corrected-approved-1,2026-04-04,2026-04-01,2026-04-30,2026-04-04T08:58:00+09:00,2026-04-04T18:42:00+09:00,60,42,524,8.73,19000,165933,vatable_standard,site_lead_mobile,doc://attendance/corrected-overtime-proof.pdf,Correction reapplied before finance handoff close.,2026-04-05T09:15:00+09:00,2026-04-07T09:00:00+09:00,finance-admin-1"
+    }
+  }
+}
